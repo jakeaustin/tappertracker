@@ -1,0 +1,39 @@
+#charts {
+  height: 300px;
+  width: 100%;
+  text-align: center;
+}
+
+#ITI-chart {
+  height: 100%;
+  width: 45%;
+  display: inline-block;
+  border: 2px solid blue;
+}
+
+#RP-chart {
+  height: 100%;
+  width: 45%;
+  display: inline-block;
+  border: 2px solid red;
+}
+
+#options {
+  text-align: center;
+  border: 2px solid green;
+}
+
+header {
+  text-align: center;
+}
+
+#countdown {
+  border: 2px solid orange;
+  color: orange;
+  background-color: black;
+  width: 10%;
+  margin-left: 45%;
+  font-weight: bold;
+  text-align: center;
+
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tapper Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="http://d3js.org/d3.v3.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Tapper Tracker</h1>
+    <p> Choose 'Simple' or 'Complex' rhythm and try to tap along! </p>
+  </header>
+
+  <div id="charts">
+    <div id="ITI-chart">
+      <svg id="svg-iti">
+      </svg>
+    </div>
+
+    <div id="RP-chart">
+      <svg id="svg-rp">
+      </svg>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="options">
+    <form id="audio-type">
+      <h4>Difficulty</h4>
+      Regular: <input type="radio" name="difficulty" value="regular">
+      <br>
+      Hard: <input type="radio" name="difficulty" value="hard">
+    </form>
+    <hr>
+    <form id="mode-type">
+      <h4>Mode</h4>
+      Practice: <input type="radio" name="mode" value="practice">
+      <br>
+      Challenge: <input type="radio" name="mode" value="challenge">
+    </form>
+    <hr>
+    <button id="start-button">Start!</button>
+  </div>
+
+  <div id="countdown">
+    Counting down...
+  </div>
+
+  <div id="userResponse">
+    <button id="clicker"> 'Tap' Here </button>
+  </div>
+
+</body>
+</html>
