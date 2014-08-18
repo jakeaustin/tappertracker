@@ -7,33 +7,32 @@ $(document).ready(function() {
   // have some animation play on home screen ---------
 
   var itiContainer = d3.select('#svg-iti')
-                              .attr("height", '100%')
-                              .attr("width", '100%');
+  .attr("height", '100%')
+  .attr("width", '100%');
   // Need
   // 1) cartesian plane
   // 2) x and y scale (x changes based on resp.length, y on resp.min & resp.max)
 
-  var rpContainer = d3.select("#svg-rp")
-                              .attr("height", '100%')
-                              .attr("width", '100%');
+var rpContainer = d3.select("#svg-rp")
+.attr("height", '100%')
+.attr("width", '100%');
 
-  var circle = rpContainer.append("circle")
-                            .attr("cx", '50%')
-                            .attr("cy", '50%')
-                           .attr("r", '30%');
+var circle = rpContainer.append("circle")
+.attr("cx", '50%')
+.attr("cy", '50%')
+.attr("r", '30%');
   // Need
   // 1) plot line function (takes in angle)
 
 
-  $('#userResponse').hide();
-  $('#countdown').hide();
-  $('#start-button').click(runDemo);
+$('#userResponse').hide();
+$('#countdown').hide();
+$('#start-button').click(runDemo);
 
 
 });
 
 var runDemo = function() {
-
   // Hide options section, replace with "tap here" button
   $('#options').hide();
   $('#userResponse').show();
@@ -64,22 +63,28 @@ var runDemo = function() {
   //    --> 'click here' changed to 'done' (returns to 'home screen')
   //    --> some way to interact with figures
 
-  debugger;
+  //debugger;
 };
 
-// not counting past first value of n....
-// not entering function second time....
 var counter = function() {
   var timer = $('#countdown');
   timer.show();
-  var n = 5;
-  (function loop() {
-     timer.html(n);
-     if (n > 0) {
-        debugger;
-         n--;
-         setTimeout(loop, 1000);
-     }
-  })();
-  timer.hide();
+  loop(timer, 5);
 };
+
+var callLoop = function(timer, n) {
+  loop(timer, n);
+  if (n<=0) {
+    timer.hide();
+  }
+};
+
+// doesn't delay on each number in countdown
+var loop = function(timer, n) {
+  timer.html(n);
+  if (n > 0) {
+    n--;
+    setTimeout(function() { callLoop(timer, n);} , 1000);
+  }
+};
+
