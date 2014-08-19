@@ -1,24 +1,24 @@
 $(document).ready(function() {
 
-  // Variables used for the standard 'beat' and user response
-  var refs = [];
-  var resps = [];
+    // Variables used for the standard 'beat' and user response
+    var refs = [];
+    var resps = [];
 
-  $('#userResponse').hide();
-  $('#countdown').hide();
+    $('#userResponse').hide();
+    $('#countdown').hide();
 
 
-/////////////////////////////////////////////////////////////////////
-  // have some animation play on home screen --------- no timeout, repeat...
-  // self-invoking function to perform animation?
+  /////////////////////////////////////////////////////////////////////
+    // have some animation play on home screen --------- no timeout, repeat...
+    // self-invoking function to perform animation?
 
-  var itiContainer = d3.select('#svg-iti')
-  .attr("height", '100%')
-  .attr("width", '100%');
-  // Need
-  // 1) cartesian plane
-  // 2) x and y scale (x changes based on resp.length, y on resp.min & resp.max)
-  // 3) x and y axes (tap # and time in ms)
+    var itiContainer = d3.select('#svg-iti')
+    .attr("height", '100%')
+    .attr("width", '100%');
+    // Need
+    // 1) cartesian plane
+    // 2) x and y scale (x changes based on resp.length, y on resp.min & resp.max)
+    // 3) x and y axes (tap # and time in ms)
 
   var rpContainer = d3.select("#svg-rp")
   .attr("height", '100%')
@@ -28,9 +28,30 @@ $(document).ready(function() {
   .attr("cx", '50%')
   .attr("cy", '50%')
   .attr("r", '30%');
-    // Need
-    // 1) plot line function (takes in angle)
-//////////////////////////////////////////////////////////////////////
+      // Need
+      // 1) plot line function (takes in angle)
+
+   // height = 300px
+   // width is a percentage....
+
+   //Create the Scale we will use for the Axis
+   var axisScale = d3.scale.linear()
+   .domain([0, 50000])
+   .range([0, 1000]);
+
+  //Create the Axis
+  var xAxis = d3.svg.axis()
+  .scale(axisScale);
+
+  //Create an SVG group Element for the Axis elements and call the xAxis function
+  var xAxisGroup = itiContainer.append("g")
+  .attr("class", "axis")
+  .attr("width", 200)
+  .attr("height", 10)
+  .append("g")
+  .attr("transform", "translate(0,10)")
+  .call(xAxis);
+  //////////////////////////////////////////////////////////////////////
 
   $('#start-button').click(runDemo);
 
@@ -91,8 +112,8 @@ var audioServe = function(track) {
   }
   else {
    $('#trackPlayer').attr('src',
-      'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
-  }
+    'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
+ }
 };
 
 var counter = function() {
