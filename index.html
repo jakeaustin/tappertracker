@@ -13,6 +13,36 @@
     <p> Choose 'Simple' or 'Complex' rhythm and try to tap along! </p>
   </header>
 
+  <table id="options">
+    <tr>
+      <td>Difficulty</td>
+      <td>Mode</td>
+    </tr>
+    <tr>
+      <td>
+        <form id="audio-type">
+          Regular: <input type="radio" name="difficulty" value="regular">
+          <br>
+          Hard: <input type="radio" name="difficulty" value="hard">
+        </form>
+      </td>
+      <td>
+        <form id="mode-type">
+          Practice: <input type="radio" name="mode" value="practice">
+          <br>
+          Challenge: <input type="radio" name="mode" value="challenge">
+        </form>
+      </td>
+    </tr>
+  </table>
+
+  <button id="start-button">Start!</button>
+  <div id="userResponse">
+    <button id="clicker"> 'Tap' Here </button>
+  </div>
+
+  <hr>
+
   <div id="charts">
     <div id="ITI-chart">
       <svg id="svg-iti">
@@ -24,34 +54,13 @@
       </svg>
     </div>
   </div>
-
   <hr>
-
-  <div id="options">
-    <form id="audio-type">
-      <h4>Difficulty</h4>
-      Regular: <input type="radio" name="difficulty" value="regular">
-      <br>
-      Hard: <input type="radio" name="difficulty" value="hard">
-    </form>
-    <hr>
-    <form id="mode-type">
-      <h4>Mode</h4>
-      Practice: <input type="radio" name="mode" value="practice">
-      <br>
-      Challenge: <input type="radio" name="mode" value="challenge">
-    </form>
-    <hr>
-    <button id="start-button">Start!</button>
-  </div>
-
-  <div id="userResponse">
-    <button id="clicker"> 'Tap' Here </button>
-  </div>
 
   <div id="countdown">
     Counting down...
   </div>
+
+  <audio id="trackPlayer" autoplay></audio>
 
 
 </body>

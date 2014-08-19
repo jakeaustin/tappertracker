@@ -21,9 +21,11 @@
 #options {
   text-align: center;
   border: 2px solid green;
+  width: 30%;
+  margin-left: 35%;
 }
 
-header {
+body {
   text-align: center;
 }
 
@@ -35,5 +37,4 @@ header {
   margin-left: 45%;
   font-weight: bold;
   text-align: center;
-
 }

@@ -38,15 +38,14 @@ $(document).ready(function() {
 
 var runDemo = function() {
   // Hide options section, replace with "tap here" button
-  $('#options').hide();
+  $('#start-button').hide();
   $('#userResponse').show();
 
   // use modeSelect to hide SVG charts if 'challenge'
-  var modeSelect = $('input[name="mode"]').val();
+  var modeSelect = $('input[name="mode"]:checked').val();
 
   // use difficultySelect to determine which audio to serve
-  var difficultySelect = $('input[name="difficulty"]').val();
-
+  var difficultySelect = $('input[name="difficulty"]:checked').val();
   refs = [];
   var startTime = Date.now();
   refs.push(startTime);
@@ -63,8 +62,10 @@ var runDemo = function() {
   // 2) serve audio
   //    - ajax get request to get audio file
   //    - append audio tag to body with src = response, autoplay = true
-  //    - include track tag to get currentTime, duration etc
-  // WHILE currentTime < duration
+  //    - get currentTime, duration etc
+  audioServe(difficultySelect);
+
+  // WHILE currentTime < duration (isPlaying)
   //    3) track user responses, store into resps
   //      --> what do about skipped taps? Rapid taps?
   //        --> if ITI < 600 DISREGARD TAP TIME
@@ -78,8 +79,20 @@ var runDemo = function() {
   //  5) end of audio --> STOP tracking, enter 'review' mode
   //    --> some way to interact with figures
   //    --> 'click here' changed to 'done' (hide/shows, play animation)
+  //  6) homescreen animation
 
-  debugger;
+  //debugger;
+};
+
+var audioServe = function(track) {
+  if (track === 'regular') {
+    $('#trackPlayer').attr('src',
+      'https://s3.amazonaws.com/TapperTrackerTracks/Metronome_aud.wav');
+  }
+  else {
+   $('#trackPlayer').attr('src',
+      'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
+  }
 };
 
 var counter = function() {
@@ -100,7 +113,7 @@ var loop = function(timer, n) {
   timer.html(n);
   if (n > 0) {
     n--;
-    setTimeout(function() { callLoop(timer, n);} , 1000);
+    setTimeout(function() { callLoop(timer, n);} , 800);
   }
 };
 
