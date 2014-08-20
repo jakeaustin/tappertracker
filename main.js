@@ -5,6 +5,7 @@ $(document).ready(function() {
     var resps = [];
 
     $('#clicker').hide();
+    $('#finish-review').hide();
     $('#countdown').hide();
 
 
@@ -34,9 +35,17 @@ $(document).ready(function() {
    // height = 300px
    // width is a percentage....
 
+   //xBase will be adjusted alone with the audio
+   //to animate through the x axis values
+   var xBase = 0;
+   //tick values for x axis
+   var tickVals = [];
+   for(var i=1; i<61; i++) {
+    tickVals.push(i);
+   }
    //Create the Scale we will use for the Axis
    var xAxisScale = d3.scale.linear()
-   .domain([0, 50000])
+   .domain([xBase, xBase+10])
    .range([0, 800]);
 
    var yAxisScale = d3.scale.linear()
@@ -45,7 +54,8 @@ $(document).ready(function() {
 
   //Create the Axis
   var xAxis = d3.svg.axis()
-  .scale(xAxisScale);
+  .scale(xAxisScale)
+  .tickValues(tickVals);
 
   var yAxis = d3.svg.axis()
   .scale(yAxisScale)
@@ -107,13 +117,6 @@ var runDemo = function() {
    playing = true;
    // disable button/link
   });
-  $('#trackPlayer').on('ended', function() {
-   playing = false;
-   // enable button/link
-   $('#start-button').show();
-   $('#clicker').hide();
-  });
-
   // WHILE currentTime < duration (isPlaying)
   //    3) track user responses, store into resps
   //      --> what do about skipped taps? Rapid taps?
@@ -127,7 +130,13 @@ var runDemo = function() {
   // currentTime >= duration
   //  5) end of audio --> STOP tracking, enter 'review' mode
   //    --> some way to interact with figures
-  //    --> 'click here' changed to 'done' (hide/shows, play animation)
+  $('#trackPlayer').on('ended', function() {
+   playing = false;
+   // enable button/link
+   $('#finish-review').show();
+   $('#clicker').hide();
+  });
+  // NEED REDIRECT FROM finish-review TO start
   //  6) homescreen animation
 
   //debugger;
