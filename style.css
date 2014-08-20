@@ -1,3 +1,8 @@
+#userResponse button {
+  height: 100px;
+  width: 50%;
+}
+
 #charts {
   height: 300px;
   width: 100%;

@@ -4,7 +4,7 @@ $(document).ready(function() {
     var refs = [];
     var resps = [];
 
-    $('#userResponse').hide();
+    $('#clicker').hide();
     $('#countdown').hide();
 
 
@@ -35,13 +35,21 @@ $(document).ready(function() {
    // width is a percentage....
 
    //Create the Scale we will use for the Axis
-   var axisScale = d3.scale.linear()
+   var xAxisScale = d3.scale.linear()
    .domain([0, 50000])
-   .range([0, 1000]);
+   .range([0, 800]);
+
+   var yAxisScale = d3.scale.linear()
+   .domain([0, 1600])
+   .range([0, 400]);
 
   //Create the Axis
   var xAxis = d3.svg.axis()
-  .scale(axisScale);
+  .scale(xAxisScale);
+
+  var yAxis = d3.svg.axis()
+  .scale(yAxisScale)
+  .orient('left');
 
   //Create an SVG group Element for the Axis elements and call the xAxis function
   var xAxisGroup = itiContainer.append("g")
@@ -51,6 +59,15 @@ $(document).ready(function() {
   .append("g")
   .attr("transform", "translate(0,10)")
   .call(xAxis);
+  var yAxisGroup = itiContainer.append("g")
+  .attr("class", "axis")
+  .attr("width", 20)
+  .attr("height", 400)
+  .append("g")
+  .attr("transform", "translate(0,400)")
+  .call(yAxis);
+
+
   //////////////////////////////////////////////////////////////////////
 
   $('#start-button').click(runDemo);
@@ -60,7 +77,7 @@ $(document).ready(function() {
 var runDemo = function() {
   // Hide options section, replace with "tap here" button
   $('#start-button').hide();
-  $('#userResponse').show();
+  $('#clicker').show();
 
   // use modeSelect to hide SVG charts if 'challenge'
   var modeSelect = $('input[name="mode"]:checked').val();
