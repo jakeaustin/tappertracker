@@ -13,6 +13,7 @@ $(document).ready(function() {
   // self-invoking function to perform animation?
 
   initializeFigures();
+  //run animation
 //////////////////////////////////////////////////////////////////////
 
   $('#start-button').click(runDemo);
@@ -23,6 +24,9 @@ $(document).ready(function() {
 
     $('#finish-review').hide();
     $('#start-button').show();
+    refs = [];
+    resps = [];
+    //run animation
   });
 });
 
@@ -84,13 +88,10 @@ var runDemo = function() {
   }
   // refs is now an array of the expected beat times
 
-  // 1) countdown timer to audio serve
-counter();
+  // 1) countdown timer to audio serve and button activation
+  counter();
 
   // 2) serve audio
-  //    - ajax get request to get audio file
-  //    - append audio tag to body with src = response, autoplay = true
-  //    - get currentTime, duration etc
   audioServe(difficultySelect);
   var playing = false;
   $('#trackPlayer').on('playing', function() {
@@ -119,12 +120,8 @@ counter();
    playing = false;
    // enable button/link
    $('#finish-review').show();
-   $('#clicker').hide();
+   $('#clicker').attr("disabled", "disabled").hide();
  });
-  // NEED REDIRECT FROM finish-review TO start
-  //  6) homescreen animation
-
-  //debugger;
 };
 
 var audioServe = function(track) {
@@ -148,6 +145,7 @@ var callLoop = function(timer, n) {
   loop(timer, n);
   if (n<=0) {
     timer.hide();
+    $('#clicker').attr("disabled", false);
   }
 };
 
