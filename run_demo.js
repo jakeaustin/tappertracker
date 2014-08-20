@@ -57,7 +57,7 @@ var runDemo = function() {
   $('#trackPlayer').on('ended', function() {
    playing = false;
    // enable button/link
-   $('#finish-review').show();
+   $('#finish-review').attr("disabled", false).show();
    $('#clicker').hide();
    debugger;
   });
