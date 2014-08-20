@@ -21,14 +21,14 @@ $(document).ready(function() {
     // 2) x and y scale (x changes based on resp.length, y on resp.min & resp.max)
     // 3) x and y axes (tap # and time in ms)
 
-  var rpContainer = d3.select("#svg-rp")
-  .attr("height", '100%')
-  .attr("width", '100%');
+var rpContainer = d3.select("#svg-rp")
+.attr("height", '100%')
+.attr("width", '100%');
 
-  var circle = rpContainer.append("circle")
-  .attr("cx", '50%')
-  .attr("cy", '50%')
-  .attr("r", '30%');
+var circle = rpContainer.append("circle")
+.attr("cx", '50%')
+.attr("cy", '50%')
+.attr("r", '30%');
       // Need
       // 1) plot line function (takes in angle)
 
@@ -42,7 +42,7 @@ $(document).ready(function() {
    var tickVals = [];
    for(var i=1; i<61; i++) {
     tickVals.push(i);
-   }
+  }
    //Create the Scale we will use for the Axis
    var xAxisScale = d3.scale.linear()
    .domain([xBase, xBase+10])
@@ -63,14 +63,14 @@ $(document).ready(function() {
 
   //Create an SVG group Element for the Axis elements and call the xAxis function
   var xAxisGroup = itiContainer.append("g")
-  .attr("class", "axis")
+  .attr("class", "x axis")
   .attr("width", 200)
   .attr("height", 10)
   .append("g")
   .attr("transform", "translate(0,10)")
   .call(xAxis);
   var yAxisGroup = itiContainer.append("g")
-  .attr("class", "axis")
+  .attr("class", "y axis")
   .attr("width", 20)
   .attr("height", 400)
   .append("g")
@@ -105,7 +105,7 @@ var runDemo = function() {
   // refs is now an array of the expected beat times
 
   // 1) countdown timer to audio serve
-  counter();
+counter();
 
   // 2) serve audio
   //    - ajax get request to get audio file
@@ -116,26 +116,27 @@ var runDemo = function() {
   $('#trackPlayer').on('playing', function() {
    playing = true;
    // disable button/link
-  });
+ });
+
   // WHILE currentTime < duration (isPlaying)
   //    3) track user responses, store into resps
-  //      --> what do about skipped taps? Rapid taps?
-  //        --> if ITI < 600 DISREGARD TAP TIME
-  //        --> if ITI > 1000 AWARD PERFECT TAP
-  //        --> OR DO NOTHING!
   //    4) do math with user response
   //  *****
   //  4.5) update SVG charts
+  //    -- redraw x axis with xBase incremented by 1 (beat period)
+  //    -- add new data point at (x, y)
+  //    -- add new line at whatever angle
   //  *****
   // currentTime >= duration
   //  5) end of audio --> STOP tracking, enter 'review' mode
   //    --> some way to interact with figures
+
   $('#trackPlayer').on('ended', function() {
    playing = false;
    // enable button/link
    $('#finish-review').show();
    $('#clicker').hide();
-  });
+ });
   // NEED REDIRECT FROM finish-review TO start
   //  6) homescreen animation
 
@@ -172,6 +173,35 @@ var loop = function(timer, n) {
   if (n > 0) {
     n--;
     setTimeout(function() { callLoop(timer, n);} , 800);
+  }
+  else {
+    n--;
+    //SHOULD ALL BE REFACTORED INTO A BULDXAXIS FUNCTION
+    $('#svg-iti g').remove();
+    xBase = -(n);
+    var xAxisScale = d3.scale.linear()
+    .domain([xBase, xBase+10])
+    .range([0, 800]);
+
+    var tickVals = [];
+    for(var i=1; i<61; i++) {
+      tickVals.push(i);
+    }
+
+    var xAxis = d3.svg.axis()
+    .scale(xAxisScale)
+    .tickValues(tickVals);
+
+    xAxisGroup = d3.select('#svg-iti').append("g")
+    .attr("class", "x axis")
+    .attr("width", 200)
+    .attr("height", 10)
+    .append("g")
+    .attr("transform", "translate(0,10)")
+    .call(xAxis);
+
+    setTimeout(function() { callLoop(timer, n);} , 800);
+
   }
 };
 
