@@ -3,13 +3,16 @@ var runDemo = function() {
   $('#start-button').hide();
   $('#clicker').show().attr("disabled", true);
 
+  // Variables used for the standard 'beat' and user response
+  var refs = [];
+  var resps = [];
+
   // use modeSelect to hide SVG charts if 'challenge'
   var modeSelect = $('input[name="mode"]:checked').val();
 
   // use difficultySelect to determine which audio to serve
   var difficultySelect = $('input[name="difficulty"]:checked').val();
 
-  refs = [];
   var startTime = Date.now();
   refs.push(startTime);
 
@@ -34,8 +37,14 @@ var runDemo = function() {
 
   scrollIti();
 
-  // WHILE currentTime < duration (isPlaying)
-  //    3) track user responses, store into resps
+  $('#clicker').click(function() {
+    resps.push(Date.now()-startTime);
+    //ITI MATH
+    //RP MATH
+    //ITI D3 PLOT
+    //RP D3 LINE
+  });
+
   //    4) do math with user response
   //  *****
   //  4.5) update SVG charts
@@ -51,6 +60,7 @@ var runDemo = function() {
    // enable button/link
    $('#finish-review').show();
    $('#clicker').hide();
+   debugger;
   });
 };
 

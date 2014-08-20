@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-  // Variables used for the standard 'beat' and user response
-  var refs = [];
-  var resps = [];
-
   $('#clicker').hide();
   $('#finish-review').hide();
   $('#countdown').hide();
@@ -24,8 +20,6 @@ $(document).ready(function() {
     $('#finish-review').attr("disabled","disabled");
     $('#finish-review').hide();
     $('#start-button').show();
-    refs = [];
-    resps = [];
     //run animation
   });
 });
