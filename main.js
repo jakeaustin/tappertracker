@@ -24,8 +24,10 @@ $(document).ready(function() {
     $('#finish-review').attr("disabled","disabled");
     $('#finish-review').hide();
     $('#start-button').show();
-    d3.selectAll('#scroll-iti circle').remove();
-    d3.selectAll('#scroll-iti line').remove();
+    setTimeout(function() {
+      d3.selectAll('#scroll-iti circle').remove();
+      d3.selectAll('#scroll-iti line').remove();
+    }, 2000);
     //run animation
   });
 });
