@@ -36,11 +36,15 @@ var runDemo = function() {
 
   var startTime = Date.now();
 
-  $('#clicker').click(function() {
-    resps.push(Date.now()-startTime);
-    //ITI MATH
+  $('#clicker').click(function(event) {
+    event.preventDefault();
+    var thisTap = Date.now() - startTime;
+    resps.push(thisTap);
+    console.log(resps);
+
+    plotItiPoint(thisTap, resps);
+
     //RP MATH
-    //ITI D3 PLOT
     //RP D3 LINE
   });
 
@@ -57,9 +61,11 @@ var runDemo = function() {
   $('#trackPlayer').on('ended', function() {
    playing = false;
    // enable button/link
-   $('#finish-review').attr("disabled", false).show();
+   $('#finish-review').show();
+   $('#finish-review').attr("disabled", false).attr('background-color', 'green').delay(3000);
    $('#clicker').hide();
-   debugger;
+   resps = [];
+   $('#clicker').unbind('click');
   });
 };
 

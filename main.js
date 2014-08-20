@@ -16,10 +16,16 @@ $(document).ready(function() {
 
   $('#finish-review').click(function() {
     d3.select('#scroll-iti')
-    .attr('transform', 'translate(0, 0)');
+    .transition()
+    .duration(2000)
+    .attr("transform", "translate(0, 0)")
+    .ease('linear');
+
     $('#finish-review').attr("disabled","disabled");
     $('#finish-review').hide();
     $('#start-button').show();
+    d3.selectAll('#scroll-iti circle').remove();
+    d3.selectAll('#scroll-iti line').remove();
     //run animation
   });
 });
