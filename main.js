@@ -102,6 +102,17 @@ var runDemo = function() {
   //    - append audio tag to body with src = response, autoplay = true
   //    - get currentTime, duration etc
   audioServe(difficultySelect);
+  var playing = false;
+  $('#trackPlayer').on('playing', function() {
+   playing = true;
+   // disable button/link
+  });
+  $('#trackPlayer').on('ended', function() {
+   playing = false;
+   // enable button/link
+   $('#start-button').show();
+   $('#clicker').hide();
+  });
 
   // WHILE currentTime < duration (isPlaying)
   //    3) track user responses, store into resps
