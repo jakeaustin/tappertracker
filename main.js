@@ -37,7 +37,7 @@ var circle = rpContainer.append("circle")
 
    //xBase will be adjusted alone with the audio
    //to animate through the x axis values
-   var xBase = 0;
+   var xBase = 1;
    //tick values for x axis
    var tickVals = [];
    for(var i=1; i<61; i++) {
@@ -46,20 +46,12 @@ var circle = rpContainer.append("circle")
    //Create the Scale we will use for the Axis
    var xAxisScale = d3.scale.linear()
    .domain([xBase, xBase+10])
-   .range([0, 800]);
-
-   var yAxisScale = d3.scale.linear()
-   .domain([0, 1600])
    .range([0, 400]);
 
   //Create the Axis
   var xAxis = d3.svg.axis()
   .scale(xAxisScale)
   .tickValues(tickVals);
-
-  var yAxis = d3.svg.axis()
-  .scale(yAxisScale)
-  .orient('left');
 
   //Create an SVG group Element for the Axis elements and call the xAxis function
   var xAxisGroup = itiContainer.append("g")
@@ -69,14 +61,6 @@ var circle = rpContainer.append("circle")
   .append("g")
   .attr("transform", "translate(0,10)")
   .call(xAxis);
-  var yAxisGroup = itiContainer.append("g")
-  .attr("class", "y axis")
-  .attr("width", 20)
-  .attr("height", 400)
-  .append("g")
-  .attr("transform", "translate(0,400)")
-  .call(yAxis);
-
 
   //////////////////////////////////////////////////////////////////////
 
@@ -170,21 +154,22 @@ var callLoop = function(timer, n) {
 // doesn't delay on each number in countdown
 var loop = function(timer, n) {
   timer.html(n);
-  if (n > 0) {
+  if (n >= 0) {
     n--;
     setTimeout(function() { callLoop(timer, n);} , 800);
   }
   else if (n < -55) {
     console.log('break');
+    // "finished review" goes in here
   }
   else {
     n--;
     //SHOULD ALL BE REFACTORED INTO A BULDXAXIS FUNCTION
     $('#svg-iti g').remove();
-    xBase = -(n);
+    var xBase = -(n);
     var xAxisScale = d3.scale.linear()
     .domain([xBase, xBase+10])
-    .range([0, 800]);
+    .range([0, 400]);
 
     var tickVals = [];
     for(var i=1; i<61; i++) {
@@ -203,7 +188,6 @@ var loop = function(timer, n) {
     .attr("transform", "translate(0,10)")
     .call(xAxis);
 
-    console.log('blamo');
     setTimeout(function() { callLoop(timer, n);} , 800);
 
   }
