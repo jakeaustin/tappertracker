@@ -105,7 +105,7 @@ var runDemo = function() {
   // refs is now an array of the expected beat times
 
   // 1) countdown timer to audio serve
-counter();
+  counter();
 
   // 2) serve audio
   //    - ajax get request to get audio file
@@ -174,6 +174,9 @@ var loop = function(timer, n) {
     n--;
     setTimeout(function() { callLoop(timer, n);} , 800);
   }
+  else if (n < -55) {
+    console.log('break');
+  }
   else {
     n--;
     //SHOULD ALL BE REFACTORED INTO A BULDXAXIS FUNCTION
@@ -200,6 +203,7 @@ var loop = function(timer, n) {
     .attr("transform", "translate(0,10)")
     .call(xAxis);
 
+    console.log('blamo');
     setTimeout(function() { callLoop(timer, n);} , 800);
 
   }
