@@ -13,13 +13,10 @@ var runDemo = function() {
   // use difficultySelect to determine which audio to serve
   var difficultySelect = $('input[name="difficulty"]:checked').val();
 
-  var startTime = Date.now();
-  refs.push(startTime);
-
   // 60 beats in audio files, will create reference array based on current time
   // , number of beats, and beat period (800ms)
-  for(var i=0; i<60; i++) {
-    refs.push(startTime + (800 * i));
+  for(var i=0; i<70; i++) {
+    refs.push(800 * i);
   }
   // refs is now an array of the expected beat times
 
@@ -36,6 +33,8 @@ var runDemo = function() {
   });
 
   scrollIti();
+
+  var startTime = Date.now();
 
   $('#clicker').click(function() {
     resps.push(Date.now()-startTime);
