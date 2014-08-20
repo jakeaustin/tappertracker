@@ -1,52 +1,44 @@
 $(document).ready(function() {
 
-    // Variables used for the standard 'beat' and user response
-    var refs = [];
-    var resps = [];
+  // Variables used for the standard 'beat' and user response
+  var refs = [];
+  var resps = [];
 
-    $('#clicker').hide();
+  $('#clicker').hide();
+  $('#finish-review').hide();
+  $('#countdown').hide();
+
+/////////////////////////////////////////////////////////////////////
+  // have some animation play on home screen --------- no timeout, repeat...
+  // self-invoking function to perform animation?
+
+  initializeFigures();
+//////////////////////////////////////////////////////////////////////
+
+  $('#start-button').click(runDemo);
+
+  $('#finish-review').click(function() {
+    d3.select('#scroll-iti')
+    .attr('transform', 'translate(0, 0)');
+
     $('#finish-review').hide();
-    $('#countdown').hide();
+    $('#start-button').show();
+  });
+});
 
-
-  /////////////////////////////////////////////////////////////////////
-    // have some animation play on home screen --------- no timeout, repeat...
-    // self-invoking function to perform animation?
-
-    var itiContainer = d3.select('#svg-iti')
-    .attr("height", '100%')
-    .attr("width", '100%');
-    // Need
-    // 1) cartesian plane
-    // 2) x and y scale (x changes based on resp.length, y on resp.min & resp.max)
-    // 3) x and y axes (tap # and time in ms)
-
-var rpContainer = d3.select("#svg-rp")
-.attr("height", '100%')
-.attr("width", '100%');
-
-var circle = rpContainer.append("circle")
-.attr("cx", '50%')
-.attr("cy", '50%')
-.attr("r", '30%');
-      // Need
-      // 1) plot line function (takes in angle)
-
-   // height = 300px
-   // width is a percentage....
-
-   //xBase will be adjusted alone with the audio
-   //to animate through the x axis values
-   var xBase = 1;
-   //tick values for x axis
-   var tickVals = [];
-   for(var i=1; i<61; i++) {
+var initializeFigures = function() {
+  var itiContainer = d3.select('#svg-iti')
+  .attr("height", '100%')
+  .attr("width", '100%');
+  //tick values for x axis
+  var tickVals = [];
+  for(var i=1; i<71; i++) {
     tickVals.push(i);
   }
-   //Create the Scale we will use for the Axis
-   var xAxisScale = d3.scale.linear()
-   .domain([xBase, xBase+10])
-   .range([0, 400]);
+ //Create the Scale we will use for the Axis
+ var xAxisScale = d3.scale.linear()
+ .domain([1, 72])
+ .range([0, 2500]);
 
   //Create the Axis
   var xAxis = d3.svg.axis()
@@ -54,19 +46,23 @@ var circle = rpContainer.append("circle")
   .tickValues(tickVals);
 
   //Create an SVG group Element for the Axis elements and call the xAxis function
-  var xAxisGroup = itiContainer.append("g")
+  var xAxisGroup = itiContainer.select('#scroll-iti').append("g")
   .attr("class", "x axis")
   .attr("width", 200)
   .attr("height", 10)
-  .append("g")
-  .attr("transform", "translate(0,10)")
+  .attr('transform', 'translate(0,275)')
   .call(xAxis);
 
-  //////////////////////////////////////////////////////////////////////
+  var rpContainer = d3.select("#svg-rp")
+  .attr("height", '100%')
+  .attr("width", '100%');
 
-  $('#start-button').click(runDemo);
+  var circle = rpContainer.append("circle")
+  .attr("cx", '50%')
+  .attr("cy", '50%')
+  .attr("r", '30%');
 
-});
+};
 
 var runDemo = function() {
   // Hide options section, replace with "tap here" button
@@ -89,7 +85,7 @@ var runDemo = function() {
   // refs is now an array of the expected beat times
 
   // 1) countdown timer to audio serve
-  counter();
+counter();
 
   // 2) serve audio
   //    - ajax get request to get audio file
@@ -102,12 +98,16 @@ var runDemo = function() {
    // disable button/link
  });
 
+  d3.select('#scroll-iti')
+  .transition()
+  .duration(48000)
+  .attr("transform", "translate(-2100, 0)")
+  .ease('linear');
   // WHILE currentTime < duration (isPlaying)
   //    3) track user responses, store into resps
   //    4) do math with user response
   //  *****
   //  4.5) update SVG charts
-  //    -- redraw x axis with xBase incremented by 1 (beat period)
   //    -- add new data point at (x, y)
   //    -- add new line at whatever angle
   //  *****
@@ -151,45 +151,12 @@ var callLoop = function(timer, n) {
   }
 };
 
-// doesn't delay on each number in countdown
 var loop = function(timer, n) {
   timer.html(n);
-  if (n >= 0) {
+  if ((n > -55) || (n >= 0)) {
+    console.log(n);
     n--;
     setTimeout(function() { callLoop(timer, n);} , 800);
-  }
-  else if (n < -55) {
-    console.log('break');
-    // "finished review" goes in here
-  }
-  else {
-    n--;
-    //SHOULD ALL BE REFACTORED INTO A BULDXAXIS FUNCTION
-    $('#svg-iti g').remove();
-    var xBase = -(n);
-    var xAxisScale = d3.scale.linear()
-    .domain([xBase, xBase+10])
-    .range([0, 400]);
-
-    var tickVals = [];
-    for(var i=1; i<61; i++) {
-      tickVals.push(i);
-    }
-
-    var xAxis = d3.svg.axis()
-    .scale(xAxisScale)
-    .tickValues(tickVals);
-
-    xAxisGroup = d3.select('#svg-iti').append("g")
-    .attr("class", "x axis")
-    .attr("width", 200)
-    .attr("height", 10)
-    .append("g")
-    .attr("transform", "translate(0,10)")
-    .call(xAxis);
-
-    setTimeout(function() { callLoop(timer, n);} , 800);
-
   }
 };
 
