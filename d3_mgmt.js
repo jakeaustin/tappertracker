@@ -19,7 +19,6 @@ var initializeFigures = function() {
      tickVals.push(i);
   }
 
-
   //Create the Axis
   var xAxis = d3.svg.axis()
   .scale(xAxisScale)
@@ -33,6 +32,17 @@ var initializeFigures = function() {
   .attr('transform', 'translate(0,275)')
   .call(xAxis);
 
+  var xGrid = itiContainer.select('#scroll-iti').append('g');
+
+  for(var j=-7; j<85; j++) {
+    xGrid.append('line')
+    .attr('stroke', 'grey')
+    .attr('stroke-width', 1)
+    .attr('x1', xAxisScale(j))
+    .attr('y1', yAxisScale(0))
+    .attr('x2', xAxisScale(j))
+    .attr('y2', yAxisScale(16000));
+  }
 
   var yAxis = d3.svg.axis()
   .scale(yAxisScale)
@@ -45,6 +55,18 @@ var initializeFigures = function() {
   .attr('height', 300)
   .attr('transform', 'translate(50,0)')
   .call(yAxis);
+
+  var yGrid = itiContainer.select('#scroll-iti').append('g');
+
+  for(var k=0; k<16; k+=2) {
+    yGrid.append('line')
+    .attr('stroke', 'grey')
+    .attr('stroke-width', 1)
+    .attr('x1', xAxisScale(-7))
+    .attr('y1', yAxisScale(k*100))
+    .attr('x2', xAxisScale(85))
+    .attr('y2', yAxisScale(k*100));
+  }
 
   var rpContainer = d3.select("#svg-rp")
   .attr("height", '100%')
