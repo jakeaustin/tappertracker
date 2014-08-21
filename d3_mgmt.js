@@ -69,20 +69,22 @@ var initializeFigures = function() {
   }
 
   var rpContainer = d3.select("#svg-rp")
-  .attr("height", '100%')
-  .attr("width", '100%');
+  .attr("height", 300)
+  .attr("width", 300);
 
   var circle = rpContainer.append("circle")
   .attr('id', 'rpCircle')
-  .attr("cx", '50%')
-  .attr("cy", '50%')
-  .attr("r", '30%');
+  .attr("cx", 150)
+  .attr("cy", 150)
+  .attr("r", 100)
+  .attr('fill', 'grey');
 
   var center = rpContainer.append("circle")
-  .attr('cx', '50%')
-  .attr('cy', '50%')
-  .attr('r', '1%')
+  .attr('cx', 150)
+  .attr('cy', 150)
+  .attr('r', 5)
   .attr('fill', 'yellow');
+
 
 };
 
@@ -106,7 +108,8 @@ var rollBackIti = function() {
     $('#start-button').attr("disabled", "disabled").show();
     setTimeout(function() {
       d3.selectAll('#scroll-iti circle').remove();
-      d3.selectAll('#scroll-iti line').remove();
+      d3.selectAll('#scroll-iti .dataLine').remove();
+      d3.selectAll('.rp-line').remove();
       $('#start-button').attr("disabled", false);
     }, 2000);
 };
@@ -122,6 +125,7 @@ var plotItiPoint = function(thisTap, resps) {
 
     d3.select('#scroll-iti').append("line")
     .transition()
+    .attr('class', 'dataLine')
     .attr('stroke', 'blue')
     .attr('stroke-width', 4)
     .attr("x1", oldX)
@@ -140,28 +144,45 @@ var plotItiPoint = function(thisTap, resps) {
 };
 
 var plotRpPoint = function(refs, aTap) {
-  debugger;
-    //seems like a bad selector.....
   var svgCircle = d3.select('#rpCircle');
   var r = parseInt(svgCircle.attr('r'));
-  var x1 = window.innerWidth * 72.5 / 100;
+  var x1 = 150;
   var y1 = 150;
 
   var diff = refs[Math.round(aTap/800)] - aTap;
+
   var angle = diff*360/800;
+  var plotY = 0;
+  var plotX = 0;
 
-  var plotY = Math.cos(angle)*r;
-  var plotX = Math.sin(angle)*r;
+  if (angle >= -90 && angle <= 90) {
+    plotY = Math.sin(angle*Math.PI/180)*r;
+    plotX = Math.cos(angle*Math.PI/180)*r;
+  }
+  else if (angle > 90) {
+    plotY = Math.cos((angle-90)*Math.PI/180)*r;
+    plotX = -Math.sin((angle-90)*Math.PI/180)*r;
+  }
+  else if (angle < -90) {
+    plotY = Math.cos((angle+90)*Math.PI/180)*r;
+    plotX = Math.sin((angle+90)*Math.PI/180)*r;
+  }
 
-  svgCircle.append('line')
+  d3.select('.rp-line:last-child')
   .transition()
+  .attr('stroke', 'yellow')
+  .attr('stroke-width', 1)
+  .duration(800);
+
+  d3.select('#svg-rp').append('line')
+  .transition()
+  .attr('class', 'rp-line')
   .attr('stroke', 'red')
-  .attr('stroke-width', 3)
+  .attr('stroke-width', 2)
   .attr('x1', x1)
   .attr('y1', y1)
   .attr('x2', plotX + x1)
   .attr('y2', plotY + y1)
-  .duration(1000);
+  .duration(400);
 
-//debugger;
 };

@@ -65,6 +65,7 @@ var runDemo = function() {
   $('#trackPlayer').on('ended', function() {
    playing = false;
    demoOver();
+   debugger;
   });
 };
 
