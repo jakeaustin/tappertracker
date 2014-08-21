@@ -85,21 +85,6 @@ var initializeFigures = function() {
   .attr('r', 5)
   .attr('fill', 'yellow');
 
-
-  rpContainer.append('g')
-    .attr('class', 'rp-ticks');
-
-    var rpTicks = [];
-    for (var z=0; z<360; z++) {
-      d3.select('.rp-ticks')
-      .append('circle')
-      .attr('id', z)
-      .attr('fill', 'steelblue')
-      .attr('r', 2)
-      .attr('transform', "translate(" + (150+(400/2-100) * Math.cos((z) * Math.PI/180)) + "," + (150+(400/2-100) * Math.sin((z) * Math.PI/180)) + ")");
-
-    }
-
 };
 
 var scrollIti = function() {
