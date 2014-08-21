@@ -67,9 +67,26 @@ var initializeFigures = function() {
 var scrollIti = function() {
   d3.select('#scroll-iti')
   .transition()
-  .duration(50000)
+  .duration(52000)
   .attr("transform", "translate(-2500, 0)")
   .ease('linear');
+};
+
+var rollBackIti = function() {
+ d3.select('#scroll-iti')
+    .transition()
+    .duration(2000)
+    .attr("transform", "translate(0, 0)")
+    .ease('linear');
+
+    $('#finish-review').attr("disabled","disabled");
+    $('#finish-review').hide();
+    $('#start-button').attr("disabled", "disabled").show();
+    setTimeout(function() {
+      d3.selectAll('#scroll-iti circle').remove();
+      d3.selectAll('#scroll-iti line').remove();
+      $('#start-button').attr("disabled", false);
+    }, 2000);
 };
 
 var plotItiPoint = function(thisTap, resps) {

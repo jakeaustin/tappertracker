@@ -14,21 +14,7 @@ $(document).ready(function() {
 
   $('#start-button').click(runDemo);
 
-  $('#finish-review').click(function() {
-    d3.select('#scroll-iti')
-    .transition()
-    .duration(2000)
-    .attr("transform", "translate(0, 0)")
-    .ease('linear');
+  $('#finish-review').click(rollBackIti);
+       //run animation
 
-    $('#finish-review').attr("disabled","disabled");
-    $('#finish-review').hide();
-    $('#start-button').attr("disabled", "disabled").show();
-    setTimeout(function() {
-      d3.selectAll('#scroll-iti circle').remove();
-      d3.selectAll('#scroll-iti line').remove();
-      $('#start-button').attr("disabled", false);
-    }, 2000);
-    //run animation
-  });
 });
