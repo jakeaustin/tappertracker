@@ -1,12 +1,12 @@
  // scales public so that run_demo can use them for plotting points
  //Create the Scale we will use for the Axis
- var xAxisScale = d3.scale.linear()
- .domain([-7, 85])
- .range([0, 3500]);
+var xAxisScale = d3.scale.linear()
+.domain([-7, 85])
+.range([0, 3500]);
 
-  var yAxisScale = d3.scale.linear()
-  .domain([1600, 0])
-  .range([10, 270]);
+var yAxisScale = d3.scale.linear()
+.domain([1600, 0])
+.range([10, 270]);
 
 var initializeFigures = function() {
   var itiContainer = d3.select('#svg-iti')
@@ -96,21 +96,28 @@ var scrollIti = function() {
 };
 
 var rollBackIti = function() {
- d3.select('#scroll-iti')
-    .transition()
-    .duration(2000)
-    .attr("transform", "translate(0, 0)")
-    .ease('linear');
+  d3.select('#scroll-iti')
+  .transition()
+  .duration(2000)
+  .attr("transform", "translate(0, 0)")
+  .ease('linear');
 
-    $('#finish-review').attr("disabled","disabled");
-    $('#finish-review').hide();
-    $('#start-button').attr("disabled", "disabled").show();
-    setTimeout(function() {
-      d3.selectAll('#scroll-iti circle').remove();
-      d3.selectAll('#scroll-iti .dataLine').remove();
-      d3.selectAll('.rp-line').remove();
-      $('#start-button').attr("disabled", false);
-    }, 2000);
+  $('#finish-review').attr("disabled","disabled");
+  $('#finish-review').hide();
+  $('#start-button').attr("disabled", "disabled").show();
+  removeRpPoint();
+  setTimeout(function() {
+    d3.selectAll('#scroll-iti circle').remove();
+    d3.selectAll('#scroll-iti .dataLine').remove();
+    $('#start-button').attr("disabled", false);
+  }, 2000);
+};
+
+var removeRpPoint = function() {
+  d3.select('.rp-line:last-child').remove();
+  if (d3.select('.rp-line') !== []) {
+    setTimeout(removeRpPoint, 10);
+  }
 };
 
 var plotItiPoint = function(thisTap, resps) {
@@ -135,11 +142,12 @@ var plotItiPoint = function(thisTap, resps) {
   }
 
   // //ITI D3 PLOT
-  if (resps.length != 1)
-  d3.select('#scroll-iti').append("circle")
-  .attr("cx", itiX)
-  .attr("cy", itiY)
-  .attr("r", 2);
+  if (resps.length != 1) {
+    d3.select('#scroll-iti').append("circle")
+    .attr("cx", itiX)
+    .attr("cy", itiY)
+    .attr("r", 2);
+  }
 };
 
 var plotRpPoint = function(refs, aTap) {
