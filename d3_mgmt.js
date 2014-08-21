@@ -51,9 +51,16 @@ var initializeFigures = function() {
   .attr("width", '100%');
 
   var circle = rpContainer.append("circle")
+  .attr('id', 'rpCircle')
   .attr("cx", '50%')
   .attr("cy", '50%')
   .attr("r", '30%');
+
+  var center = rpContainer.append("circle")
+  .attr('cx', '50%')
+  .attr('cy', '50%')
+  .attr('r', '1%')
+  .attr('fill', 'yellow');
 
 };
 
@@ -91,4 +98,31 @@ var plotItiPoint = function(thisTap, resps) {
   .attr("cx", itiX)
   .attr("cy", itiY)
   .attr("r", 2);
+};
+
+var plotRpPoint = function(refs, aTap) {
+  debugger;
+    //seems like a bad selector.....
+  var svgCircle = d3.select('#rpCircle');
+  var r = parseInt(svgCircle.attr('r'));
+  var x1 = window.innerWidth * 72.5 / 100;
+  var y1 = 150;
+
+  var diff = refs[Math.round(aTap/800)] - aTap;
+  var angle = diff*360/800;
+
+  var plotY = Math.cos(angle)*r;
+  var plotX = Math.sin(angle)*r;
+
+  svgCircle.append('line')
+  .transition()
+  .attr('stroke', 'red')
+  .attr('stroke-width', 3)
+  .attr('x1', x1)
+  .attr('y1', y1)
+  .attr('x2', plotX + x1)
+  .attr('y2', plotY + y1)
+  .duration(1000);
+
+//debugger;
 };

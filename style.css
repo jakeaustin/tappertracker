@@ -1,6 +1,10 @@
+/*#header {
+  height: 10%;
+}
+*/
 #userResponse button {
-  height: 100px;
   width: 50%;
+  height: 60px;
 }
 
 #charts {
@@ -26,6 +30,7 @@
 #options {
   text-align: center;
   border: 2px solid green;
+  height: 25%;
   width: 30%;
   margin-left: 35%;
 }

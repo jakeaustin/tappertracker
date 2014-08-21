@@ -15,6 +15,28 @@
     <p> Choose 'Simple' or 'Complex' rhythm and try to tap along! </p>
   </header>
 
+  <div id="userResponse">
+    <button id="start-button">Start!</button>
+    <button id="clicker" disabled> 'Tap' Here </button>
+    <button id="finish-review">Done</button>
+  </div>
+
+  <hr>
+
+  <div id="charts">
+    <div id="ITI-chart">
+      <svg id="svg-iti">
+        <g id="scroll-iti"></g>
+      </svg>
+    </div>
+
+    <div id="RP-chart">
+      <svg id="svg-rp">
+      </svg>
+    </div>
+  </div>
+  <hr>
+
   <table id="options">
     <tr>
       <td>Difficulty</td>
@@ -37,28 +59,6 @@
       </td>
     </tr>
   </table>
-
-    <div id="userResponse">
-  <button id="start-button">Start!</button>
-    <button id="clicker" disabled> 'Tap' Here </button>
-    <button id="finish-review">Done</button>
-  </div>
-
-  <hr>
-
-  <div id="charts">
-    <div id="ITI-chart">
-      <svg id="svg-iti">
-        <g id="scroll-iti"></g>
-      </svg>
-    </div>
-
-    <div id="RP-chart">
-      <svg id="svg-rp">
-      </svg>
-    </div>
-  </div>
-  <hr>
 
   <div id="countdown">
     Counting down...

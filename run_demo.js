@@ -49,6 +49,7 @@ var runDemo = function() {
     //perform d3 to add new data point, animate line
     plotItiPoint(thisTap, resps);
 
+    plotRpPoint(refs, thisTap);
     //perform d3 to add new RP data line, animate
     //RP D3 LINE
   });
