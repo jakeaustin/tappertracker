@@ -1,8 +1,8 @@
  // scales public so that run_demo can use them for plotting points
  //Create the Scale we will use for the Axis
  var xAxisScale = d3.scale.linear()
- .domain([1, 72])
- .range([0, 2500]);
+ .domain([-7, 85])
+ .range([0, 3500]);
 
   var yAxisScale = d3.scale.linear()
   .domain([1600, 0])
@@ -14,9 +14,9 @@ var initializeFigures = function() {
   .attr("width", '90%');
 
   //tick values for x axis
-  var tickVals = [];
-  for(var i=1; i<71; i++) {
-    tickVals.push(i);
+  var tickVals = [-7, -6, -5, -4, -3, -2, -1, 0];
+  for(var i=1; i<85; i++) {
+     tickVals.push(i);
   }
 
 
@@ -67,13 +67,13 @@ var initializeFigures = function() {
 var scrollIti = function() {
   d3.select('#scroll-iti')
   .transition()
-  .duration(48000)
-  .attr("transform", "translate(-1800, 0)")
+  .duration(52000)
+  .attr("transform", "translate(-2500, 0)")
   .ease('linear');
 };
 
 var plotItiPoint = function(thisTap, resps) {
-  var itiX = xAxisScale((thisTap / 800) + 6);
+  var itiX = xAxisScale((thisTap / 800) + 1);
   var itiY = yAxisScale(resps[resps.length-1] - resps[resps.length-2]);
 
   // draw line connecting plot point to previous point
