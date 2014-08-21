@@ -86,8 +86,9 @@ var plotItiPoint = function(thisTap, resps) {
   }
 
   // //ITI D3 PLOT
+  if (resps.length != 1)
   d3.select('#scroll-iti').append("circle")
   .attr("cx", itiX)
   .attr("cy", itiY)
-  .attr("r", 6);
+  .attr("r", 2);
 };

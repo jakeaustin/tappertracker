@@ -1,5 +1,6 @@
 var runDemo = function() {
-  // Hide options section, replace with "tap here" button
+  // Hide start button, replace with "tap here" button
+  // (disabled for countdown)
   $('#start-button').hide();
   $('#clicker').show().attr("disabled", true);
 
@@ -26,25 +27,29 @@ var runDemo = function() {
   // 2) serve audio
   audioServe(difficultySelect);
 
+  // not actually using playing yet....
   var playing = false;
   $('#trackPlayer').on('playing', function() {
    playing = true;
    // disable button/link
   });
 
+  //animate svg-iti container at the pace of the beat
   scrollIti();
 
+  //listen for user taps, save relative tap time in resps
   var startTime = Date.now();
-
   $('#clicker').click(function(event) {
     event.preventDefault();
+
+    //add this tap to the list of user inputs
     var thisTap = Date.now() - startTime;
     resps.push(thisTap);
-    console.log(resps);
 
+    //perform d3 to add new data point, animate line
     plotItiPoint(thisTap, resps);
 
-    //RP MATH
+    //perform d3 to add new RP data line, animate
     //RP D3 LINE
   });
 
@@ -54,19 +59,20 @@ var runDemo = function() {
   //    -- add new data point at (x, y)
   //    -- add new line at whatever angle
   //  *****
-  // currentTime >= duration
-  //  5) end of audio --> STOP tracking, enter 'review' mode
-  //    --> some way to interact with figures
 
+  //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
    playing = false;
-   // enable button/link
-   $('#finish-review').show();
-   $('#finish-review').attr("disabled", false).attr('background-color', 'green').delay(3000);
-   $('#clicker').hide();
-   resps = [];
-   $('#clicker').unbind('click');
+   demoOver();
   });
+};
+
+var demoOver = function() {
+ $('#clicker').hide();
+ $('#clicker').unbind('click');$('#finish-review').show();
+ setTimeout(function() {
+  $('#finish-review').attr("disabled", false);
+ }, 3000);
 };
 
 var counter = function() {
