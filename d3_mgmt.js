@@ -67,7 +67,7 @@ var initializeFigures = function() {
 var scrollIti = function() {
   d3.select('#scroll-iti')
   .transition()
-  .duration(52000)
+  .duration(50000)
   .attr("transform", "translate(-2500, 0)")
   .ease('linear');
 };

@@ -70,7 +70,8 @@ var runDemo = function() {
 
 var demoOver = function() {
  $('#clicker').hide();
- $('#clicker').unbind('click');$('#finish-review').show();
+ $('#clicker').unbind('click');
+ $('#finish-review').attr('disabled', 'disabled').show();
  setTimeout(function() {
   $('#finish-review').attr("disabled", false);
  }, 3000);
