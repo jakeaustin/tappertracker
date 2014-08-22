@@ -100,6 +100,16 @@ var initializeFigures = function() {
   .attr('id', 'rpScore')
   .text('Score');
 
+  var onBeat = rpContainer.append('g')
+  .attr('transform', 'translate(230, 155)')
+  .append('text')
+  .text('On Beat');
+
+  var offBeat = rpContainer.append('g')
+  .attr('transform', 'translate(10, 155)')
+  .append('text')
+  .text('Off Beat');
+
 };
 
 var scrollIti = function() {
