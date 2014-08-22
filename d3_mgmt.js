@@ -114,9 +114,8 @@ var rollBackIti = function() {
 };
 
 var removeRpPoint = function(x) {
-  console.log(x);
   d3.select('.rp-line:last-child').remove();
-  if (x !== 1) {
+  if (x > 1) {
     setTimeout(removeRpPoint, 10, [x-1]);
   }
 };
