@@ -4,21 +4,16 @@
 }
 
 #charts {
-  height: 300px;
   width: 100%;
   text-align: center;
 }
 
 #ITI-chart {
-  height: 100%;
-    width: 50%;
-
   display: inline-block;
   border: 2px solid blue;
 }
 
 #RP-chart {
-  height: 100%;
   display: inline-block;
   border: 2px solid red;
 }

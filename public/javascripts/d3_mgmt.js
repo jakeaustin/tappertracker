@@ -10,8 +10,8 @@ var yAxisScale = d3.scale.linear()
 
 var initializeFigures = function() {
   var itiContainer = d3.select('#svg-iti')
-  .attr("height", '100%')
-  .attr("width", '90%');
+  .attr("height", 300)
+  .attr("width", 300);
 
   //tick values for x axis
   var tickVals = [-7, -6, -5, -4, -3, -2, -1, 0];
