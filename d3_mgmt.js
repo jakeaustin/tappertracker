@@ -140,6 +140,10 @@ var rollBackIti = function() {
     .attr('transform', 'translate(0,'+yAxisScale(1650)+')')
     .duration(200);
 
+    d3.select('#rpScore')
+    .text('Score');
+
+
     $('#start-button').attr("disabled", false);
   }, 2000);
 };

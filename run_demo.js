@@ -67,7 +67,6 @@ var demoOver = function(numTaps) {
  removeRpPoint(numTaps);
  $('#clicker').hide();
  $('#clicker').unbind('click');
- //$('#trackPlaer').unbind('ended');
  $('#finish-review').attr('disabled', 'disabled').show();
  setTimeout(function() {
   $('#finish-review').attr("disabled", false);
