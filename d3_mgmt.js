@@ -105,7 +105,7 @@ var rollBackIti = function() {
   $('#finish-review').attr("disabled","disabled");
   $('#finish-review').hide();
   $('#start-button').attr("disabled", "disabled").show();
-  removeRpPoint();
+
   setTimeout(function() {
     d3.selectAll('#scroll-iti circle').remove();
     d3.selectAll('#scroll-iti .dataLine').remove();
@@ -113,10 +113,11 @@ var rollBackIti = function() {
   }, 2000);
 };
 
-var removeRpPoint = function() {
+var removeRpPoint = function(x) {
+  console.log(x);
   d3.select('.rp-line:last-child').remove();
-  if (d3.select('.rp-line') !== []) {
-    setTimeout(removeRpPoint, 10);
+  if (x !== 1) {
+    setTimeout(removeRpPoint, 10, [x-1]);
   }
 };
 

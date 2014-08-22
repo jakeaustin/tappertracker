@@ -36,7 +36,6 @@ var runDemo = function() {
 
   //animate svg-iti container at the pace of the beat
   scrollIti();
-
   //listen for user taps, save relative tap time in resps
   var startTime = Date.now();
   $('#clicker').click(function(event) {
@@ -54,24 +53,19 @@ var runDemo = function() {
     //RP D3 LINE
   });
 
-  //    4) do math with user response
-  //  *****
-  //  4.5) update SVG charts
-  //    -- add new data point at (x, y)
-  //    -- add new line at whatever angle
-  //  *****
-
   //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
    playing = false;
-   demoOver();
+   demoOver(resps.length);
    debugger;
   });
 };
 
-var demoOver = function() {
+var demoOver = function(numTaps) {
+ removeRpPoint(numTaps);
  $('#clicker').hide();
  $('#clicker').unbind('click');
+ //$('#trackPlaer').unbind('ended');
  $('#finish-review').attr('disabled', 'disabled').show();
  setTimeout(function() {
   $('#finish-review').attr("disabled", false);
