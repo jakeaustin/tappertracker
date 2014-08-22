@@ -222,4 +222,21 @@ var plotRpPoint = function(refs, aTap) {
   .attr('y2', plotY + y1)
   .duration(400);
 
+  return angle;
+};
+
+updateStdRpVal = function(angles) {
+  var sum = 0;
+  for(var i=0; i<angles.length; i++) {
+    sum += angles[i];
+  }
+  var meanAng = sum / angles.length;
+
+  sum = 0;
+  for(var j=0; j<angles.length; j++) {
+    sum += Math.pow((angles[j] - meanAng), 2);
+  }
+  var meanDiff = sum / angles.length;
+  var stdDev = Math.sqrt(meanDiff);
+  console.log(stdDev);
 };

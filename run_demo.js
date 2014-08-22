@@ -7,6 +7,7 @@ var runDemo = function() {
   // Variables used for the standard 'beat' and user response
   var refs = [];
   var resps = [];
+  var angles = [];
 
   // use modeSelect to hide SVG charts if 'challenge'
   var modeSelect = $('input[name="mode"]:checked').val();
@@ -48,9 +49,10 @@ var runDemo = function() {
     //perform d3 to add new data point, animate line
     plotItiPoint(thisTap, resps);
 
-    plotRpPoint(refs, thisTap);
+    angles.push(plotRpPoint(refs, thisTap));
     //perform d3 to add new RP data line, animate
     //RP D3 LINE
+    updateStdRpVal(angles);
   });
 
   //end of audio stimulus, end user input
