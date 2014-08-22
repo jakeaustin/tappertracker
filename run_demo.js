@@ -7,7 +7,22 @@ var runDemo = function() {
   // Variables used for the standard 'beat' and user response
   var refs = [];
   var resps = [];
-  var angles = [];
+
+  //for 'slow' tapping challenge
+  var sloAngles = [];
+
+  //for 'medium' tapping
+  var medAnglesA = [];
+  var medAnglesB = [];
+
+  //for 'fast' tapping
+  var fasAnglesA = [];
+  var fasAnglesB = [];
+  var fasAnglesC = [];
+  var fasAnglesD = [];
+
+  //speed selection
+  var speedSelect = $('input[name="speed"]:checked').val();
 
   // use modeSelect to hide SVG charts if 'challenge'
   var modeSelect = $('input[name="mode"]:checked').val();
@@ -37,6 +52,7 @@ var runDemo = function() {
 
   //animate svg-iti container at the pace of the beat
   scrollIti();
+
   //listen for user taps, save relative tap time in resps
   var startTime = Date.now();
   $('#clicker').click(function(event) {
@@ -46,20 +62,66 @@ var runDemo = function() {
     var thisTap = Date.now() - startTime;
     resps.push(thisTap);
 
-    //perform d3 to add new data point, animate line
+    //perform d3 to add new ITI data point, animate line
     plotItiPoint(thisTap, resps);
 
-    angles.push(plotRpPoint(refs, thisTap));
-    //perform d3 to add new RP data line, animate
-    //RP D3 LINE
-    updateStdRpVal(angles);
+    //perform d3 to plot new RP line, update 'score'
+    //default to 'slow' (800ms)
+    var angle = plotRpPoint(refs, thisTap);
+
+    //calculate score based on play speed
+    if (speedSelect === 'medium') {
+      if (angle > -90 && angle < 90) {
+        medAnglesA.push(angle);
+      }
+      else {
+        if (angle > 0) {
+          medAnglesB.push(angle);
+        }
+        else {
+          medAnglesB.push(-angle);
+        }
+      }
+      //require an equal number of taps in each group
+      if (medAnglesA.length === medAnglesB.length) {
+        updateScoreMed(medAnglesA, medAnglesB);
+      }
+    }
+    else if (speedSelect === 'fast') {
+      if (angle > -45 && angle < 45) {
+        fasAnglesA.push(angle);
+      }
+      else if (angle < -45 && angle > -135) {
+        fasAnglesB.push(angle);
+      }
+      else if (angle > 45 && angle < 135) {
+        fasAnglesC.push(angle);
+      }
+      else {
+        if (angle > 0) {
+          fasAnglesD.push(angle);
+        }
+        else {
+          fasAnglesD.push(-angle);
+        }
+      }
+      //require an equal number of taps in each group
+      if (fasAnglesA.length === fasAnglesB.length &&
+          fasAnglesB.length === fasAnglesC.length &&
+          fasAnglesC.length === fasAnglesD.length) {
+        updateScoreFas(fasAnglesA, fasAnglesB, fasAnglesC, fasAnglesD);
+      }
+    }
+    else {
+      sloAngles.push(plotRpPoint(refs, thisTap));
+      updateScoreSlo(sloAngles);
+    }
   });
 
   //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
    playing = false;
    demoOver(resps.length);
-   debugger;
   });
 };
 

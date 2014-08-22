@@ -143,7 +143,6 @@ var rollBackIti = function() {
     d3.select('#rpScore')
     .text('Score');
 
-
     $('#start-button').attr("disabled", false);
   }, 2000);
 };
@@ -235,7 +234,7 @@ var plotRpPoint = function(refs, aTap) {
   .transition()
   .attr('class', 'rp-line')
   .attr('stroke', 'red')
-  .attr('stroke-width', 2)
+  .attr('stroke-width', 1)
   .attr('x1', x1)
   .attr('y1', y1)
   .attr('x2', plotX + x1)
@@ -245,7 +244,8 @@ var plotRpPoint = function(refs, aTap) {
   return angle;
 };
 
-updateStdRpVal = function(angles) {
+//takes a group of angles and returns standard deviation val
+calcScore = function(angles, expected) {
   var sum = 0;
   for(var i=0; i<angles.length; i++) {
     sum += angles[i];
@@ -259,6 +259,27 @@ updateStdRpVal = function(angles) {
   var meanDiff = sum / angles.length;
   var stdDev = Math.sqrt(meanDiff);
 
+  return Math.abs(meanAng - expected) + stdDev;
+};
+
+updateScoreSlo = function(angles) {
+  var score = calcScore(angles, 0);
   d3.select('#rpScore')
-  .text(Math.round(stdDev) + ' ms');
+  .text(score.toFixed(2));
+};
+
+updateScoreMed = function(onBeatTaps, offBeatTaps) {
+  var scoreA = calcScore(onBeatTaps, 0);
+  var scoreB = calcScore(offBeatTaps, 180);
+  d3.select('#rpScore')
+  .text(((scoreA + scoreB)/2).toFixed(2));
+};
+
+updateScoreFas = function(onBeat, quarterFast, quarterSlow, offBeat) {
+  var scoreA = calcScore(onBeat, 0);
+  var scoreB = calcScore(quarterFast, -90);
+  var scoreC = calcScore(quarterSlow, 90);
+  var scoreD = calcScore(offBeat, 180);
+  d3.select('#rpScore')
+  .text(((scoreA+scoreB+scoreC+scoreD)/4).toFixed(2));
 };
