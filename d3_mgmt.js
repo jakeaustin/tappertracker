@@ -41,7 +41,7 @@ var initializeFigures = function() {
     .attr('x1', xAxisScale(j))
     .attr('y1', yAxisScale(0))
     .attr('x2', xAxisScale(j))
-    .attr('y2', yAxisScale(16000));
+    .attr('y2', yAxisScale(1600));
   }
 
   var yAxis = d3.svg.axis()
@@ -118,6 +118,12 @@ var rollBackIti = function() {
   setTimeout(function() {
     d3.selectAll('#scroll-iti circle').remove();
     d3.selectAll('#scroll-iti .dataLine').remove();
+
+    d3.select('#mean-iti-line')
+    .transition()
+    .attr('transform', 'translate(0,'+yAxisScale(1650)+')')
+    .duration(200);
+
     $('#start-button').attr("disabled", false);
   }, 2000);
 };
