@@ -94,6 +94,12 @@ var initializeFigures = function() {
   .attr('r', 5)
   .attr('fill', 'yellow');
 
+  var score = rpContainer.append('g')
+  .attr('transform', 'translate(125, 50)')
+  .append('text')
+  .attr('id', 'rpScore')
+  .text('Score');
+
 };
 
 var scrollIti = function() {
@@ -238,5 +244,7 @@ updateStdRpVal = function(angles) {
   }
   var meanDiff = sum / angles.length;
   var stdDev = Math.sqrt(meanDiff);
-  console.log(stdDev);
+
+  d3.select('#rpScore')
+  .text(Math.round(stdDev) + ' ms');
 };
