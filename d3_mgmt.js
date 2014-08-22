@@ -68,6 +68,15 @@ var initializeFigures = function() {
     .attr('y2', yAxisScale(k*100));
   }
 
+  var meanIti = yGrid.append('line')
+  .attr('id', 'mean-iti-line')
+  .attr('stroke', 'green')
+  .attr('stroke-width', 3)
+  .attr('x1', xAxisScale(-7))
+  .attr('y1', yAxisScale(800))
+  .attr('x2', xAxisScale(85))
+  .attr('y2', yAxisScale(800));
+
   var rpContainer = d3.select("#svg-rp")
   .attr("height", 300)
   .attr("width", 300);
@@ -147,6 +156,21 @@ var plotItiPoint = function(thisTap, resps) {
     .attr("cx", itiX)
     .attr("cy", itiY)
     .attr("r", 2);
+  }
+
+  //Update Mean ITI X axis
+  if (resps.length > 1) {
+    var sum = 0;
+    for(var i=1; i<resps.length; i++) {
+      sum += (resps[i] - resps[i-1]);
+    }
+    var mean = sum/resps.length;
+    var scaledMean = yAxisScale(mean) - yAxisScale(800);
+
+    var meanLine = d3.select('#mean-iti-line')
+    .transition()
+    .attr('transform', 'translate(0,'+scaledMean+')')
+    .duration(200);
   }
 };
 
