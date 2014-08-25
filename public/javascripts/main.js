@@ -1,3 +1,5 @@
+var tapTrack = tapTrack || {};
+
 $(document).ready(function() {
 
   $('#clicker').hide();
