@@ -55,18 +55,42 @@ var runDemo = function() {
 };
 
 var updateUserScore = function(speed, score) {
-  //if speed === 'slow', get slow-score
+  var dataObj = {user: {}};
   $.ajax({
     type: 'get',
     datatype: 'json',
     url: '/user'
-  }).done(function() {debugger;});
-  //if speed === 'medium', get medium-score
-  //if speed === 'fast', get fast-score
+  }).done(function(userData) {
+    if (speed === 'slow') {
+      dataObj.user = { slow_score: score };
+      if (userData.slow_score < score) {
+        patchUserScore(dataObj);
+      }
+    }
+    else if (speed === 'medium') {
+      dataObj.user = { medium_score: score };
+      if (userData.medium_score < score) {
+        patchUserScore(dataObj);
+      }
+    }
+    else if (speed === 'fast') {
+      dataObj.user = { fast_score: score };
+      if (userData.fast_score < score) {
+        patchUserScore(dataObj);
+      }
+    }
+  });
+};
 
-  // var recordScore = $.ajax .........
-  // if recordScore > score
-  //    $.ajax post .....
+var patchUserScore = function(dataObj) {
+  $.ajax({
+    type: 'put',
+    datatype: 'json',
+    data: dataObj,
+    url: '/user'
+  }).done(function() {
+    console.log('New High Score!');
+  });
 };
 
 var demoOver = function(numTaps) {
