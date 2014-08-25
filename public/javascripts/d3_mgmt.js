@@ -258,24 +258,3 @@ calcScore = function(angles, expected) {
   return Math.abs(meanAng - expected) + stdDev;
 };
 
-updateScoreSlo = function(angles) {
-  var score = calcScore(angles, 0);
-  d3.select('#rpScore')
-  .text(score.toFixed(2));
-};
-
-updateScoreMed = function(onBeatTaps, offBeatTaps) {
-  var scoreA = calcScore(onBeatTaps, 0);
-  var scoreB = calcScore(offBeatTaps, 180);
-  d3.select('#rpScore')
-  .text(((scoreA + scoreB)/2).toFixed(2));
-};
-
-updateScoreFas = function(onBeat, quarterFast, quarterSlow, offBeat) {
-  var scoreA = calcScore(onBeat, 0);
-  var scoreB = calcScore(quarterFast, -90);
-  var scoreC = calcScore(quarterSlow, 90);
-  var scoreD = calcScore(offBeat, 180);
-  d3.select('#rpScore')
-  .text(((scoreA+scoreB+scoreC+scoreD)/4).toFixed(2));
-};

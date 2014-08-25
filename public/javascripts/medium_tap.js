@@ -37,7 +37,7 @@ var tapTrack = tapTrack || {};
       updateScore = function(){
         var scoreA = calcScore(_anglesA, 0);
         var scoreB = calcScore(_anglesB, 180);
-        if (medAnglesA.length === medAnglesB.length) {
+        if (_anglesA.length === _anglesB.length) {
           d3.select('#rpScore')
             .text(((scoreA + scoreB)/2).toFixed(2));
         }
@@ -50,7 +50,7 @@ var tapTrack = tapTrack || {};
         return  sum/_actualResponses.length;
       };
 
-  app.SlowTap ={
+  app.MediumTap ={
     init: initialize,
     add: addResponse,
     lastDiff: lastDiff,

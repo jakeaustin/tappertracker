@@ -8,8 +8,7 @@ var tapTrack = tapTrack || {};
 
   for(i; i< 70; i++){
     app.expectedResponses.push(800 * i);
-  };
-  app.expectedResponses;
+  }
 
 })(tapTrack);
 
