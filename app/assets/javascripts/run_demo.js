@@ -16,14 +16,11 @@ var runDemo = function() {
   // use modeSelect to hide SVG charts if 'challenge'
   // var modeSelect = $('input[name="mode"]:checked').val();
 
-  // use difficultySelect to determine which audio to serve
-  var difficultySelect = $('input[name="difficulty"]:checked').val();
-
   // 1) countdown timer to audio serve and button activation
   counter();
 
   // 2) serve audio
-  audioServe(difficultySelect);
+  audioServe();
 
   //animate svg-iti container at the pace of the beat
   scrollIti();
@@ -86,13 +83,7 @@ var loop = function(timer, n) {
   }
 };
 
-var audioServe = function(track) {
-  if (track === 'regular') {
+var audioServe = function() {
     $('#trackPlayer').attr('src',
                            'https://s3.amazonaws.com/TapperTrackerTracks/Metronome_aud.wav');
-  }
-  else {
-    $('#trackPlayer').attr('src',
-                           'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
-  }
 };
