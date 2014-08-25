@@ -19,7 +19,7 @@ var tapTrack = tapTrack || {};
       _angles = [],
       initialize = function(){
         _actualResponses = [];
-        _angels = [];
+        _angles = [];
       },
       addResponse = function(tapTime){
         _actualResponses.push(tapTime);
