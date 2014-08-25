@@ -154,12 +154,13 @@ var removeRpPoint = function(x) {
   }
 };
 
-var plotItiPoint = function(thisTap, resps) {
+var plotItiPoint = function(thisTap, tapSpeedObj) {
   var itiX = xAxisScale((thisTap / 800) + 1);
-  var itiY = yAxisScale(resps[resps.length-1] - resps[resps.length-2]);
+  var itiY = yAxisScale(tapSpeedObj.lastDiff());
+  var actualResponsesLen = tapSpeedObj.numResponses()
 
   // draw line connecting plot point to previous point
-  if (resps.length > 2) {
+  if (actualResponsesLen > 2) {
     var oldX = d3.select('#scroll-iti circle:last-child').attr('cx');
     var oldY = d3.select('#scroll-iti circle:last-child').attr('cy');
 
@@ -176,7 +177,7 @@ var plotItiPoint = function(thisTap, resps) {
   }
 
   // //ITI D3 PLOT
-  if (resps.length != 1) {
+  if (actualResponsesLen != 1) {
     d3.select('#scroll-iti').append("circle")
     .attr("cx", itiX)
     .attr("cy", itiY)
@@ -184,14 +185,9 @@ var plotItiPoint = function(thisTap, resps) {
   }
 
   //Update Mean ITI X axis
-  if (resps.length > 1) {
-    var sum = 0;
-    for(var i=1; i<resps.length; i++) {
-      sum += (resps[i] - resps[i-1]);
-    }
-    var mean = sum/resps.length;
+  if (actualResponsesLen > 1) {
+    var mean  = tapSpeedObj.calcMean();
     var scaledMean = yAxisScale(mean) - yAxisScale(800);
-
     var meanLine = d3.select('#mean-iti-line')
     .transition()
     .attr('transform', 'translate(0,'+scaledMean+')')

@@ -4,38 +4,36 @@ var runDemo = function() {
   $('#start-button').hide();
   $('#clicker').show().attr("disabled", true);
 
-  // Variables used for the standard 'beat' and user response
-  var refs = [];
-  var resps = [];
+  // // Variables used for the standard 'beat' and user response
+  // var resps = [];
 
-  //for 'slow' tapping challenge
-  var sloAngles = [];
+  // //for 'slow' tapping challenge
+  // var sloAngles = [];
 
-  //for 'medium' tapping
-  var medAnglesA = [];
-  var medAnglesB = [];
+  // //for 'medium' tapping
+  // var medAnglesA = [];
+  // var medAnglesB = [];
 
-  //for 'fast' tapping
-  var fasAnglesA = [];
-  var fasAnglesB = [];
-  var fasAnglesC = [];
-  var fasAnglesD = [];
+  // //for 'fast' tapping
+  // var fasAnglesA = [];
+  // var fasAnglesB = [];
+  // var fasAnglesC = [];
+  // var fasAnglesD = [];
 
   //speed selection
-  var speedSelect = $('input[name="speed"]:checked').val();
+  var speedMap = {
+    "slow": tapTrack.SlowTap,
+    "medium": tapTrack.MediumTap,
+    "fast": tapTrack.FastTap,
+  },
+  speedTapObj = speedMap[$('input[name="speed"]:checked').val()];
+  speedTapObj.init();
 
   // use modeSelect to hide SVG charts if 'challenge'
-  var modeSelect = $('input[name="mode"]:checked').val();
+  // var modeSelect = $('input[name="mode"]:checked').val();
 
   // use difficultySelect to determine which audio to serve
   var difficultySelect = $('input[name="difficulty"]:checked').val();
-
-  // 60 beats in audio files, will create reference array based on current time
-  // , number of beats, and beat period (800ms)
-  for(var i=0; i<70; i++) {
-    refs.push(800 * i);
-  }
-  // refs is now an array of the expected beat times
 
   // 1) countdown timer to audio serve and button activation
   counter();
@@ -46,8 +44,8 @@ var runDemo = function() {
   // not actually using playing yet....
   var playing = false;
   $('#trackPlayer').on('playing', function() {
-   playing = true;
-   // disable button/link
+    playing = true;
+    // disable button/link
   });
 
   //animate svg-iti container at the pace of the beat
@@ -60,79 +58,83 @@ var runDemo = function() {
 
     //add this tap to the list of user inputs
     var thisTap = Date.now() - startTime;
-    resps.push(thisTap);
+    speedTapObj.add(thisTap);
 
     //perform d3 to add new ITI data point, animate line
-    plotItiPoint(thisTap, resps);
+    plotItiPoint(thisTap,speedTapObj);
 
     //perform d3 to plot new RP line, update 'score'
     //default to 'slow' (800ms)
-    var angle = plotRpPoint(refs, thisTap);
+    var angle = plotRpPoint(tapTrack.expectedResponses, thisTap);
 
     //calculate score based on play speed
-    if (speedSelect === 'medium') {
-      if (angle > -90 && angle < 90) {
-        medAnglesA.push(angle);
-      }
-      else {
-        if (angle > 0) {
-          medAnglesB.push(angle);
-        }
-        else {
-          medAnglesB.push(-angle);
-        }
-      }
-      //require an equal number of taps in each group
-      if (medAnglesA.length === medAnglesB.length) {
-        updateScoreMed(medAnglesA, medAnglesB);
-      }
-    }
-    else if (speedSelect === 'fast') {
-      if (angle > -45 && angle < 45) {
-        fasAnglesA.push(angle);
-      }
-      else if (angle < -45 && angle > -135) {
-        fasAnglesB.push(angle);
-      }
-      else if (angle > 45 && angle < 135) {
-        fasAnglesC.push(angle);
-      }
-      else {
-        if (angle > 0) {
-          fasAnglesD.push(angle);
-        }
-        else {
-          fasAnglesD.push(-angle);
-        }
-      }
-      //require an equal number of taps in each group
-      if (fasAnglesA.length === fasAnglesB.length &&
-          fasAnglesB.length === fasAnglesC.length &&
-          fasAnglesC.length === fasAnglesD.length) {
-        updateScoreFas(fasAnglesA, fasAnglesB, fasAnglesC, fasAnglesD);
-      }
-    }
-    else {
-      sloAngles.push(plotRpPoint(refs, thisTap));
-      updateScoreSlo(sloAngles);
-    }
+    // if (speedSelect === 'medium') {
+    //   if (angle > -90 && angle < 90) {
+    //     medAnglesA.push(angle);
+    //   }
+    //   else {
+    //     if (angle > 0) {
+    //       medAnglesB.push(angle);
+    //     }
+    //     else {
+    //       medAnglesB.push(-angle);
+    //     }
+    //   }
+    //   //require an equal number of taps in each group
+    //   if (medAnglesA.length === medAnglesB.length) {
+    //     updateScoreMed(medAnglesA, medAnglesB);
+    //   }
+    // }
+    // else if (speedSelect === 'fast') {
+    //   if (angle > -45 && angle < 45) {
+    //     fasAnglesA.push(angle);
+    //   }
+    //   else if (angle < -45 && angle > -135) {
+    //     fasAnglesB.push(angle);
+    //   }
+    //   else if (angle > 45 && angle < 135) {
+    //     fasAnglesC.push(angle);
+    //   }
+    //   else {
+    //     if (angle > 0) {
+    //       fasAnglesD.push(angle);
+    //     }
+    //     else {
+    //       fasAnglesD.push(-angle);
+    //     }
+    //   }
+    //   //require an equal number of taps in each group
+    //   if (fasAnglesA.length === fasAnglesB.length &&
+    //       fasAnglesB.length === fasAnglesC.length &&
+    //       fasAnglesC.length === fasAnglesD.length) {
+    //     updateScoreFas(fasAnglesA, fasAnglesB, fasAnglesC, fasAnglesD);
+    //   }
+    // }
+    // else {
+    //   // sloAngles.push(plotRpPoint(tapTrack.expectedResponses, thisTap));
+    //   speedTapObj.addAngle(angle);
+    //   speedTapObj.updateScore();
+    // }
+    speedTapObj.addAngle(angle);
+    speedTapObj.updateScore();
+
   });
 
   //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
-   playing = false;
-   demoOver(resps.length);
+    playing = false;
+    demoOver(resps.length);
   });
 };
 
 var demoOver = function(numTaps) {
- removeRpPoint(numTaps);
- $('#clicker').hide();
- $('#clicker').unbind('click');
- $('#finish-review').attr('disabled', 'disabled').show();
- setTimeout(function() {
-  $('#finish-review').attr("disabled", false);
- }, 3000);
+  removeRpPoint(numTaps);
+  $('#clicker').hide();
+  $('#clicker').unbind('click');
+  $('#finish-review').attr('disabled', 'disabled').show();
+  setTimeout(function() {
+    $('#finish-review').attr("disabled", false);
+  }, 3000);
 };
 
 var counter = function() {
@@ -160,11 +162,10 @@ var loop = function(timer, n) {
 var audioServe = function(track) {
   if (track === 'regular') {
     $('#trackPlayer').attr('src',
-      'https://s3.amazonaws.com/TapperTrackerTracks/Metronome_aud.wav');
+                           'https://s3.amazonaws.com/TapperTrackerTracks/Metronome_aud.wav');
   }
   else {
-   $('#trackPlayer').attr('src',
-    'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
- }
+    $('#trackPlayer').attr('src',
+                           'https://s3.amazonaws.com/TapperTrackerTracks/SM_aud_1.wav');
+  }
 };
-
