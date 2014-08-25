@@ -47,8 +47,26 @@ var runDemo = function() {
   //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
     playing = false;
+    var score = $('#rpScore').text();
+    var speed = $('input[name="speed"]:checked').val();
+    updateUserScore(speed, score);
     demoOver(speedTapObj.numResponses());
   });
+};
+
+var updateUserScore = function(speed, score) {
+  //if speed === 'slow', get slow-score
+  $.ajax({
+    type: 'get',
+    datatype: 'json',
+    url: '/user'
+  }).done(function() {debugger;});
+  //if speed === 'medium', get medium-score
+  //if speed === 'fast', get fast-score
+
+  // var recordScore = $.ajax .........
+  // if recordScore > score
+  //    $.ajax post .....
 };
 
 var demoOver = function(numTaps) {
