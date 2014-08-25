@@ -1,65 +1,55 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Tapper Tracker</title>
-</head>
-<body>
-  <header>
-    <h1>Tapper Tracker</h1>
-  </header>
+<header>
+  <h1>Tapper Tracker</h1>
+</header>
 
-  <table id="options" class="col-md-12">
-    <tr>
-      <td>Mode</td>
-      <td>Tap Speed</td>
-    </tr>
-    <tr>
-      <td>
-        <form id="mode-type">
-          Practice: <input type="radio" name="mode" value="practice" checked>
-          <br>
-          Challenge: <input type="radio" name="mode" value="challenge">
-        </form>
-      </td>
-      <td>
-        <form id="speed-type">
-          On Beat: <input type="radio" name="speed" value="slow" checked>
-          <br>
-          Double-time: <input type="radio" name="speed" value="medium">
-          <br>
-          Quadruple-time: <input type="radio" name="speed" value="fast">
-        </form>
-      </td>
-    </tr>
-  </table>
+<table id="options" class="col-md-12">
+  <tr>
+    <td>Mode</td>
+    <td>Tap Speed</td>
+  </tr>
+  <tr>
+    <td>
+      <form id="mode-type">
+        Practice: <input type="radio" name="mode" value="practice" checked>
+        <br>
+        Challenge: <input type="radio" name="mode" value="challenge">
+      </form>
+    </td>
+    <td>
+      <form id="speed-type">
+        On Beat: <input type="radio" name="speed" value="slow" checked>
+        <br>
+        Double-time: <input type="radio" name="speed" value="medium">
+        <br>
+        Quadruple-time: <input type="radio" name="speed" value="fast">
+      </form>
+    </td>
+  </tr>
+</table>
 
-  <div id="userResponse" class="row">
-    <button id="start-button">Start!</button>
-    <button id="clicker" disabled> 'Tap' Here </button>
-    <button id="finish-review">Done</button>
+<div id="userResponse" class="row">
+  <button id="start-button">Start!</button>
+  <button id="clicker" disabled> 'Tap' Here </button>
+  <button id="finish-review">Done</button>
+</div>
+
+<hr>
+
+<div id="charts" class="row">
+  <div id="ITI-chart" class="col-md-6">
+    <svg id="svg-iti">
+      <g id="scroll-iti"></g>
+    </svg>
   </div>
 
-  <hr>
-
-  <div id="charts" class="row">
-    <div id="ITI-chart" class="col-md-6">
-      <svg id="svg-iti">
-        <g id="scroll-iti"></g>
-      </svg>
-    </div>
-
-    <div id="RP-chart" class="col-md-6">
-      <svg id="svg-rp">
-      </svg>
-    </div>
+  <div id="RP-chart" class="col-md-6">
+    <svg id="svg-rp">
+    </svg>
   </div>
+</div>
 
-  <div id="countdown">
-    Counting down...
-  </div>
+<div id="countdown">
+  Counting down...
+</div>
 
-  <audio id="trackPlayer" autoplay></audio>
-
-
-</body>
-</html>
+<audio id="trackPlayer" autoplay></audio>
