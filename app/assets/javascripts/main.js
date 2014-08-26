@@ -5,6 +5,11 @@ $(document).ready(function() {
   $('#clicker').hide();
   $('#finish-review').hide();
   $('#countdown').hide();
+  $('.aboutPage').hide();
+
+  $('.about-button').click(function() {
+    $('.aboutPage').toggle();
+  });
 
   buildScoreBoard();
 

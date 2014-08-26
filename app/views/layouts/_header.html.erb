@@ -10,6 +10,9 @@
 
     <div class = "collapse navbar-collapse navHeaderCollapse">
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="about-button btn btn-success btn-sm">About</div>
+        </li>
         <% if user_signed_in? %>
         <li>
           <%= link_to root_path, class: "btn btn-primary btn-sm" do %>
