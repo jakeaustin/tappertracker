@@ -91,6 +91,8 @@ var updateUserScore = function(speed, score) {
         patchUserScore(dataObj);
       }
     }
+  }).fail(function() {
+    alert('must be signed in to save high scores!');
   });
 };
 
@@ -102,6 +104,8 @@ var patchUserScore = function(dataObj) {
     url: '/user'
   }).done(function() {
     alert('New High Score!');
+    $('.highScores').empty();
+    buildScoreBoard();
   }).fail(function() {
     alert('Error saving new high score');
   });
