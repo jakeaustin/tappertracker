@@ -8,6 +8,6 @@
 
 
 10.times do |i|
-  User.create!(email: Faker::Internet.safe_email, password: 'password', slow_score: i*100, medium_score: i*50, fast_score: i*25)
+  User.create!(email: Faker::Internet.safe_email, password: 'password', slow_score: (1+i)*100, medium_score: (1+i)*50, fast_score: (1+i)*25)
   puts "Created user #{i}"
 end
