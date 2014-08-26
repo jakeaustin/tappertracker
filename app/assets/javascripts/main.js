@@ -6,6 +6,8 @@ $(document).ready(function() {
   $('#finish-review').hide();
   $('#countdown').hide();
 
+  buildScoreBoard();
+
 /////////////////////////////////////////////////////////////////////
   // have some animation play on home screen --------- no timeout, repeat...
   // self-invoking function to perform animation?

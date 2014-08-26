@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resource :user, only: [:show, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  match '/leaders', to: 'users#leaders', via: 'get'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   root 'home#index'

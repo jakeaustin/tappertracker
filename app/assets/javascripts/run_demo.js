@@ -54,6 +54,18 @@ var runDemo = function() {
   });
 };
 
+var buildScoreBoard = function() {
+  $.ajax({
+    type: 'get',
+    datatype: 'json',
+    url: '/leaders',
+  }).done(function(data) {
+    debugger;
+  }).fail(function() {
+    alert('Something went wroooooong');
+  });
+};
+
 var updateUserScore = function(speed, score) {
   var dataObj = {user: {}};
   $.ajax({
