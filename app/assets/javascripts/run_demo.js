@@ -89,7 +89,9 @@ var patchUserScore = function(dataObj) {
     data: dataObj,
     url: '/user'
   }).done(function() {
-    console.log('New High Score!');
+    alert('New High Score!');
+  }).fail(function() {
+    alert('Error saving new high score');
   });
 };
 
