@@ -47,6 +47,11 @@ GEM
     execjs (2.2.1)
     faker (1.4.2)
       i18n (~> 0.5)
+    handlebars_assets (0.17.1)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.1.3)
@@ -126,6 +131,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   faker
+  handlebars_assets
   jbuilder (~> 2.0)
   jquery-rails
   pg

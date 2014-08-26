@@ -60,7 +60,7 @@ var buildScoreBoard = function() {
     datatype: 'json',
     url: '/leaders',
   }).done(function(data) {
-    debugger;
+    $('.highScores').append(HandlebarsTemplates.build_leaderboard(data));
   }).fail(function() {
     alert('Something went wroooooong');
   });

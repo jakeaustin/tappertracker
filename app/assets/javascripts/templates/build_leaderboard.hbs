@@ -1,0 +1,30 @@
+<table> High Scores
+  <tr>
+    <td>Slow</td>
+    <td>Medium</td>
+    <td>Fast</td>
+  </tr>
+  <tr>
+    <td>
+      <ol>
+        {{#each this.slow}}
+          <li> {{email}} -- {{slow_score}} </li>
+        {{/each}}
+      </ol>
+    </td>
+    <td>
+      <ol>
+        {{#each this.medium}}
+          <li> {{email}} -- {{medium_score}} </li>
+        {{/each}}
+      </ol>
+    </td>
+    <td>
+      <ol>
+        {{#each this.fast}}
+          <li> {{email}} -- {{slow_fast}} </li>
+        {{/each}}
+      </ol>
+    </td>
+  </tr>
+</table>
