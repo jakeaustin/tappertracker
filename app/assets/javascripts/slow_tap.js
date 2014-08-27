@@ -47,18 +47,8 @@ var tapTrack = tapTrack || {};
         }
         return  sum/_actualResponses.length;
       },
-      calcMeanRP = function() {
-        var sum = 0;
-        for(var i=0; i<_angles.length; i++) {
-          sum += angles[i];
-        }
-        return [sum/_angles.length];
-      },
       expectedMeanIti = function() {
         return 800;
-      },
-      expectedMeanRP = function() {
-        return [0];
       };
 
   app.SlowTap ={
@@ -69,9 +59,7 @@ var tapTrack = tapTrack || {};
     numResponses: numResponses,
     updateScore: updateScore,
     calcMeanIti: calcMeanIti,
-    calcMeanRP: calcMeanRP,
     expectedMeanIti: expectedMeanIti,
-    expectedMeanRP: expectedMeanRP
   };
 
 })(tapTrack);

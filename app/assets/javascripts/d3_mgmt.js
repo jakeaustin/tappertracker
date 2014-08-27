@@ -173,7 +173,7 @@ var plotItiPoint = function(thisTap, tapSpeedObj) {
     .duration(1000);
   }
 
-  // //ITI D3 PLOT
+  // //ITI POINT PLOT
   if (actualResponsesLen != 1) {
     d3.select('#scroll-iti').append("circle")
     .attr("cx", itiX)
@@ -183,15 +183,18 @@ var plotItiPoint = function(thisTap, tapSpeedObj) {
 
   //Update Mean ITI X axis
   if (actualResponsesLen > 1) {
-    var mean  = tapSpeedObj.calcMeanIti();
-    var scaledMean = yAxisScale(mean) - yAxisScale(tapSpeedObj.expectedMeanIti());
-    var meanLine = d3.select('#mean-iti-line')
-    .transition()
-    .attr('transform', 'translate(0,'+scaledMean+')')
-    .duration(200);
+    updateMeanIti(tapSpeedObj);
   }
 };
 
+var updateMeanIti = function(tapSpeedObj) {
+  var mean  = tapSpeedObj.calcMeanIti();
+  var scaledMean = yAxisScale(mean) - yAxisScale(tapSpeedObj.expectedMeanIti());
+  var meanLine = d3.select('#mean-iti-line')
+  .transition()
+  .attr('transform', 'translate(0,'+scaledMean+')')
+  .duration(200);
+};
 var plotRpPoint = function(refs, aTap) {
   var svgCircle = d3.select('#rpCircle');
   var r = parseInt(svgCircle.attr('r'));

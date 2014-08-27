@@ -64,31 +64,8 @@ var tapTrack = tapTrack || {};
     }
     return  sum/_actualResponses.length;
   },
-  calcMeanRP = function() {
-    var sumA = 0;
-    var sumB = 0;
-    var sumC = 0;
-    var sumD = 0;
-    for(var i=0; i<_anglesA.length; i++) {
-      sumA += _anglesA[i];
-    }
-    for(var j=0; j<_anglesB.length; j++) {
-      sumB += _anglesB[j];
-    }
-    for(var k=0; k<_anglesC.length; k++) {
-      sumC += _anglesC[k];
-    }
-    for(var l=0; l<_anglesD.length; l++) {
-      sumD += _anglesD[l];
-    }
-    return [sumA/_anglesA.length, sumB/_anglesB.length,
-            sumC/_anglesC.length, sumD/_anglesD.length];
-  },
   expectedMeanIti = function() {
     return 200;
-  },
-  expectedMeanRP = function() {
-    return [0, 90, -90, 180];
   };
 
   app.FastTap ={
@@ -99,9 +76,7 @@ var tapTrack = tapTrack || {};
     numResponses: numResponses,
     updateScore: updateScore,
     calcMeanIti: calcMeanIti,
-    calcMeanRP: calcMeanRP,
     expectedMeanIti: expectedMeanIti,
-    expectedMeanRP: expectedMeanRP
   };
 
 })(tapTrack);

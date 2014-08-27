@@ -51,22 +51,8 @@ var tapTrack = tapTrack || {};
         }
         return  sum/_actualResponses.length;
       },
-      calcMeanRP = function() {
-        var sumA = 0;
-        var sumB = 0;
-        for(var i=0; i<_anglesA.length; i++) {
-          sumA += _anglesA[i];
-        }
-        for(var j=0; j<_anglesB.length; j++) {
-          sumB += _anglesB[j];
-        }
-        return [sumA/_anglesA.length, sumB/_anglesB.length];
-      },
       expectedMeanIti = function() {
         return 400;
-      },
-      expectedMeanRP = function() {
-        return [0, 180];
       };
 
   app.MediumTap = {
@@ -77,9 +63,7 @@ var tapTrack = tapTrack || {};
     numResponses: numResponses,
     updateScore: updateScore,
     calcMeanIti: calcMeanIti,
-    calcMeanRP: calcMeanRP,
     expectedMeanIti: expectedMeanIti,
-    expectedMeanRP: expectedMeanRP
   };
 
 })(tapTrack);
