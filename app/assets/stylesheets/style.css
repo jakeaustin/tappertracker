@@ -1,6 +1,11 @@
-#userResponse button {
+#userResponse {
   width: 50%;
   height: 60px;
+  margin-left: 25%;
+}
+
+.start-button {
+  width: 16.6%;
 }
 
 #charts {
