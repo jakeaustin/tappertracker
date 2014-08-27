@@ -23,14 +23,6 @@
   border: 2px solid red;
 }
 
-#options {
-  text-align: center;
-  border: 2px solid green;
-  height: 25%;
-  width: 50%;
-  margin-left: 25%;
-}
-
 body {
   text-align: center;
 }
