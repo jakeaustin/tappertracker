@@ -9,6 +9,8 @@ var tapTrack = tapTrack || {};
         _actualResponses = [];
         _anglesA = [];
         _anglesB = [];
+        drawMeanIti(400);
+        drawMeanRP([0, 180]);
       },
       addResponse = function(tapTime){
         _actualResponses.push(tapTime);
@@ -42,22 +44,42 @@ var tapTrack = tapTrack || {};
             .text(((scoreA + scoreB)/2).toFixed(2));
         }
       },
-      calcMean = function(){
+      calcMeanIti = function(){
         var sum = 0;
         for(var i=1; i< _actualResponses.length; i++) {
           sum += (_actualResponses[i] - _actualResponses[i-1]);
         }
         return  sum/_actualResponses.length;
+      },
+      calcMeanRP = function() {
+        var sumA = 0;
+        var sumB = 0;
+        for(var i=0; i<_anglesA.length; i++) {
+          sumA += _anglesA[i];
+        }
+        for(var j=0; j<_anglesB.length; j++) {
+          sumB += _anglesB[j];
+        }
+        return [sumA/_anglesA.length, sumB/_anglesB.length];
+      },
+      expectedMeanIti = function() {
+        return 400;
+      },
+      expectedMeanRP = function() {
+        return [0, 180];
       };
 
-  app.MediumTap ={
+  app.MediumTap = {
     init: initialize,
     add: addResponse,
     lastDiff: lastDiff,
     addAngle: addAngle,
     numResponses: numResponses,
     updateScore: updateScore,
-    calcMean: calcMean
+    calcMeanIti: calcMeanIti,
+    calcMeanRP: calcMeanRP,
+    expectedMeanIti: expectedMeanIti,
+    expectedMeanRP: expectedMeanRP
   };
 
 })(tapTrack);

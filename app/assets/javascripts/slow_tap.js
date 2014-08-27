@@ -19,6 +19,8 @@ var tapTrack = tapTrack || {};
       initialize = function(){
         _actualResponses = [];
         _angles = [];
+        drawMeanIti(800);
+        drawMeanRP([0]);
       },
       addResponse = function(tapTime){
         _actualResponses.push(tapTime);
@@ -38,12 +40,25 @@ var tapTrack = tapTrack || {};
         var score = calcScore(_angles, 0);
         d3.select('#rpScore').text(score.toFixed(2));
       },
-      calcMean = function(){
+      calcMeanIti = function(){
         var sum = 0;
         for(var i=1; i< _actualResponses.length; i++) {
           sum += (_actualResponses[i] - _actualResponses[i-1]);
         }
         return  sum/_actualResponses.length;
+      },
+      calcMeanRP = function() {
+        var sum = 0;
+        for(var i=0; i<_angles.length; i++) {
+          sum += angles[i];
+        }
+        return [sum/_angles.length];
+      },
+      expectedMeanIti = function() {
+        return 800;
+      },
+      expectedMeanRP = function() {
+        return [0];
       };
 
   app.SlowTap ={
@@ -53,7 +68,10 @@ var tapTrack = tapTrack || {};
     addAngle: addAngle,
     numResponses: numResponses,
     updateScore: updateScore,
-    calcMean: calcMean
+    calcMeanIti: calcMeanIti,
+    calcMeanRP: calcMeanRP,
+    expectedMeanIti: expectedMeanIti,
+    expectedMeanRP: expectedMeanRP
   };
 
 })(tapTrack);

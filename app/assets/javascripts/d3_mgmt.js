@@ -56,7 +56,8 @@ var initializeFigures = function() {
   .attr('transform', 'translate(50,0)')
   .call(yAxis);
 
-  var yGrid = itiContainer.select('#scroll-iti').append('g');
+  var yGrid = itiContainer.select('#scroll-iti').append('g')
+  .attr("class", "ygrid");
 
   for(var k=0; k<16; k+=2) {
     yGrid.append('line')
@@ -67,15 +68,6 @@ var initializeFigures = function() {
     .attr('x2', xAxisScale(85))
     .attr('y2', yAxisScale(k*100));
   }
-
-  var meanIti = yGrid.append('line')
-  .attr('id', 'mean-iti-line')
-  .attr('stroke', 'green')
-  .attr('stroke-width', 3)
-  .attr('x1', xAxisScale(-7))
-  .attr('y1', yAxisScale(800))
-  .attr('x2', xAxisScale(85))
-  .attr('y2', yAxisScale(800));
 
   var rpContainer = d3.select("#svg-rp")
   .attr("height", 300)
@@ -137,7 +129,12 @@ var rollBackIti = function() {
 
     d3.select('#mean-iti-line')
     .transition()
-    .attr('transform', 'translate(0,'+yAxisScale(1650)+')')
+    .remove()
+    .duration(200);
+
+    d3.selectAll('.rp-mean-line')
+    .transition()
+    .remove()
     .duration(200);
 
     d3.select('#rpScore')
@@ -157,7 +154,7 @@ var removeRpPoint = function(x) {
 var plotItiPoint = function(thisTap, tapSpeedObj) {
   var itiX = xAxisScale((thisTap / 800) + 1);
   var itiY = yAxisScale(tapSpeedObj.lastDiff());
-  var actualResponsesLen = tapSpeedObj.numResponses()
+  var actualResponsesLen = tapSpeedObj.numResponses();
 
   // draw line connecting plot point to previous point
   if (actualResponsesLen > 2) {
@@ -186,8 +183,8 @@ var plotItiPoint = function(thisTap, tapSpeedObj) {
 
   //Update Mean ITI X axis
   if (actualResponsesLen > 1) {
-    var mean  = tapSpeedObj.calcMean();
-    var scaledMean = yAxisScale(mean) - yAxisScale(800);
+    var mean  = tapSpeedObj.calcMeanIti();
+    var scaledMean = yAxisScale(mean) - yAxisScale(tapSpeedObj.expectedMeanIti());
     var meanLine = d3.select('#mean-iti-line')
     .transition()
     .attr('transform', 'translate(0,'+scaledMean+')')
@@ -258,3 +255,48 @@ calcScore = function(angles, expected) {
   return Math.abs(meanAng - expected) + stdDev;
 };
 
+drawMeanIti = function(newMean) {
+  var meanIti = d3.select('.ygrid').append('line')
+  .transition()
+  .attr('id', 'mean-iti-line')
+  .attr('stroke', 'green')
+  .attr('stroke-width', 3)
+  .attr('x1', xAxisScale(-7))
+  .attr('y1', yAxisScale(newMean))
+  .attr('x2', xAxisScale(85))
+  .attr('y2', yAxisScale(newMean))
+  .duration(3000);
+};
+
+drawMeanRP = function(means) {
+  var svgCircle = d3.select('#rpCircle');
+  var r = parseInt(svgCircle.attr('r'));
+  var angle = 0;
+  var plotX = 0;
+  var plotY = 0;
+  for(var i=0; i<means.length; i++) {
+    angle = means[i];
+    if (angle >= -90 && angle <= 90) {
+      plotY = Math.sin(angle*Math.PI/180)*r;
+      plotX = Math.cos(angle*Math.PI/180)*r;
+    }
+    else if (angle > 90) {
+      plotY = Math.cos((angle-90)*Math.PI/180)*r;
+      plotX = -Math.sin((angle-90)*Math.PI/180)*r;
+    }
+    else if (angle < -90) {
+      plotY = -Math.cos((angle+90)*Math.PI/180)*r;
+      plotX = Math.sin((angle+90)*Math.PI/180)*r;
+    }
+    d3.select('#svg-rp').append('line')
+    .transition()
+    .attr('class', 'rp-mean-line')
+    .attr('stroke', 'green')
+    .attr('stroke-width', 3)
+    .attr('x1', 150)
+    .attr('y1', 150)
+    .attr('x2', plotX + 150)
+    .attr('y2', plotY + 150)
+    .duration(3000);
+  }
+};
