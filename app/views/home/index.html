@@ -2,29 +2,12 @@
   <h1>Tapper Tracker</h1>
 </header>
 
-<!-- <table id="options" class="col-md-12">
-  <tr>
-    <td>Tap Speed</td>
-  </tr>
-  <tr>
-    <td>
-      <form id="speed-type">
-        On Beat: <input type="radio" name="speed" value="slow" checked>
-        <br>
-        Double-time: <input type="radio" name="speed" value="medium">
-        <br>
-        Quadruple-time: <input type="radio" name="speed" value="fast">
-      </form>
-    </td>
-  </tr>
-</table>
- -->
 <div id="userResponse" class="row">
   <!-- <button id="start-button">Start!</button> -->
-  <div id="start-button">
-    <button class="start-button" id="slow">1x</button>
-    <button class="start-button" id="medium">2x</button>
-    <button class="start-button" id="fast">4x</button>
+  <div id="start-button-group">
+    <button class="start-button" data-speed="slow">1x</button>
+    <button class="start-button" data-speed="medium">2x</button>
+    <button class="start-button" data-speed="fast">4x</button>
   </div>
   <button id="clicker" disabled> 'Tap' Here </button>
   <button id="finish-review">Done</button>
@@ -44,6 +27,8 @@
     </svg>
   </div>
 </div>
+
+<hr>
 
 <div id="countdown">
   Counting down...

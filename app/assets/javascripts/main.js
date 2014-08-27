@@ -21,7 +21,7 @@ $(document).ready(function() {
   //run animation
 //////////////////////////////////////////////////////////////////////
 
-  $('#start-button').attr('disabled', false).click(runDemo);
+  $('.start-button').attr('disabled', false).click(runDemo);
 
   $('#finish-review').click(rollBackIti);
        //run animation

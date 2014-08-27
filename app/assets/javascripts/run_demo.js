@@ -1,7 +1,7 @@
 var runDemo = function() {
   // Hide start button, replace with "tap here" button
   // (disabled for countdown)
-  $('#start-button').hide();
+  $('#start-button-group').hide();
   $('#clicker').show().attr("disabled", true);
 
   //speed selection
@@ -10,11 +10,8 @@ var runDemo = function() {
     "medium": tapTrack.MediumTap,
     "fast": tapTrack.FastTap,
   },
-  speedTapObj = speedMap[$('input[name="speed"]:checked').val()];
+  speedTapObj = speedMap[$(this).attr('data-speed')];
   speedTapObj.init();
-
-  // use modeSelect to hide SVG charts if 'challenge'
-  // var modeSelect = $('input[name="mode"]:checked').val();
 
   // 1) countdown timer to audio serve and button activation
   counter();
