@@ -1,30 +1,35 @@
-<table> High Scores
-  <tr>
-    <td>On-Beat</td>
-    <td>Double-Time</td>
-    <td>Quad-Time</td>
-  </tr>
-  <tr>
-    <td>
-      <ol>
-        {{#each this.slow}}
+<table class="container-fluid">
+  <thead>High Scores</thead>
+  <tbody class="row">
+    <tr class="col-md-4">
+      <td>1x</td>
+      <td>
+        <ol>
+          {{#each this.slow}}
           <li> {{email}} -- {{slow_score}} </li>
-        {{/each}}
-      </ol>
-    </td>
-    <td>
-      <ol>
-        {{#each this.medium}}
+          {{/each}}
+        </ol>
+      </td>
+    </tr>
+    <tr class="col-md-4">
+      <td> 2x </td>
+      <td>
+        <ol>
+          {{#each this.medium}}
           <li> {{email}} -- {{medium_score}} </li>
-        {{/each}}
-      </ol>
-    </td>
-    <td>
-      <ol>
-        {{#each this.fast}}
+          {{/each}}
+        </ol>
+      </td>
+    </tr>
+    <tr class="col-md-4">
+      <td> 4x </td>
+      <td>
+        <ol>
+          {{#each this.fast}}
           <li> {{email}} -- {{fast_score}} </li>
-        {{/each}}
-      </ol>
-    </td>
-  </tr>
+          {{/each}}
+        </ol>
+      </td>
+    </tr>
+  </tbody>
 </table>
