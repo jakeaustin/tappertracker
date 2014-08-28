@@ -1,9 +1,9 @@
 <div class="container-fluid leaderboard">
-  <h2>High Scores</h2>
+  <h3 class="titleFont">High Scores</h3>
   <div class="row">
     <div class="col-md-4 score-box slow-scores">
       <h3>1x</h3>
-      <div>
+      <div class="user-scores">
         <ol>
           {{#each this.slow}}
           <li> {{email}} -- {{slow_score}} </li>
@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-4 score-box medium-scores">
       <h3> 2x </h3>
-      <div>
+      <div class="user-scores">
         <ol>
           {{#each this.medium}}
           <li> {{email}} -- {{medium_score}} </li>
@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-4 score-box fast-scores">
       <h3> 4x </h3>
-      <div>
+      <div class="user-scores">
         <ol>
           {{#each this.fast}}
           <li> {{email}} -- {{fast_score}} </li>

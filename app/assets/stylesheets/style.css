@@ -1,5 +1,10 @@
 body {
   background-color: #ecf0f1;
+  font-family: 'Droid Serif', serif;
+}
+
+.titleFont {
+  font-family: 'Oswald', sans-serif;
 }
 
 .navbar-nav li a {
@@ -36,6 +41,11 @@ body {
 .leaderboard {
   margin: 0 20px;
 }
+
+.leaderboard h3 {
+  text-align: center;
+}
+
 .score-box {
   border-radius: 15%;
   border: 3px solid #ecf0f1;
