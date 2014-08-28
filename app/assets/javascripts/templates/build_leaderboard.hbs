@@ -1,35 +1,34 @@
-<table class="container-fluid">
-  <thead>High Scores</thead>
-  <tbody class="row">
-    <tr class="col-md-4 slow-scores">
-      <td>1x</td>
-      <td>
+<div class="container-fluid leaderboard">
+  <h2>High Scores</h2>
+  <div class="row">
+    <div class="col-md-4 score-box slow-scores">
+      <h3>1x</h3>
+      <div>
         <ol>
           {{#each this.slow}}
           <li> {{email}} -- {{slow_score}} </li>
           {{/each}}
         </ol>
-      </td>
-    </tr>
-    <tr class="col-md-4 medium-scores">
-      <td> 2x </td>
-      <td>
+      </div>
+    </div>
+    <div class="col-md-4 score-box medium-scores">
+      <h3> 2x </h3>
+      <div>
         <ol>
           {{#each this.medium}}
           <li> {{email}} -- {{medium_score}} </li>
           {{/each}}
         </ol>
-      </td>
-    </tr>
-    <tr class="col-md-4 fast-scores">
-      <td> 4x </td>
-      <td>
+      </div>
+    </div>
+    <div class="col-md-4 score-box fast-scores">
+      <h3> 4x </h3>
+      <div>
         <ol>
           {{#each this.fast}}
           <li> {{email}} -- {{fast_score}} </li>
           {{/each}}
         </ol>
-      </td>
-    </tr>
-  </tbody>
-</table>
+      </div>
+    </div>
+</div>

@@ -1,18 +1,44 @@
+body {
+  background-color: #ecf0f1;
+}
+
+#start-button-group {
+  height: 100%;
+}
+
+.start-button {
+  width: 16.6%;
+  height: 100%;
+}
+
 .onex {
   background-color: #2ecc71;
 }
+
 .twox {
   background-color: #16BA85;
 }
+
 .fourx {
   background-color: #29BEB9;
 }
+
+.leaderboard {
+  margin: 0 20px;
+}
+.score-box {
+  border-radius: 15%;
+  border: 3px solid #ecf0f1;
+}
+
 .slow-scores {
   background-color: #2ecc71;
 }
+
 .medium-scores {
   background-color: #16BA85;
 }
+
 .fast-scores {
   background-color: #29BEB9;
 }
@@ -26,13 +52,6 @@
   width: 50%;
   height: 100px;
   margin-left: 25%;
-}
-#start-button-group {
-  height: 100%;
-}
-.start-button {
-  width: 16.6%;
-  height: 100%;
 }
 
 #charts {
@@ -83,10 +102,10 @@ body {
   background-color: rgba(255, 255, 255, 0.9);
   width: 50%;
   margin-left: 25%;
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 .about-button {
   float: left;
-  margin-top: 5px;
+  margin-top: 10px;
 }
