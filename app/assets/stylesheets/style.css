@@ -55,18 +55,17 @@ body {
 }
 
 #charts {
-  width: 100%;
   text-align: center;
 }
 
 #ITI-chart {
-  display: inline-block;
-  border: 2px solid blue;
+ /* border: 2px solid blue;
+  border-radius: 15%;*/
 }
 
 #RP-chart {
-  display: inline-block;
-  border: 2px solid red;
+ /* border: 2px solid red;
+  border-radius: 15%;*/
 }
 
 body {
