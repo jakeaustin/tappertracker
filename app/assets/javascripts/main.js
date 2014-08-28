@@ -2,8 +2,7 @@ var tapTrack = tapTrack || {};
 
 $(document).ready(function() {
 
-  $('#clicker').hide();
-  $('#finish-review').hide();
+  $('#runtimeResponse').hide();
   $('#countdown').hide();
   $('.aboutPage').hide();
 

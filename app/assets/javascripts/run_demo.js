@@ -2,7 +2,10 @@ var runDemo = function() {
   // Hide start button, replace with "tap here" button
   // (disabled for countdown)
   $('#start-button-group').hide();
-  $('#clicker').show().attr("disabled", true);
+  $('#runtimeResponse').show();
+  $('#finish-review').hide();
+  $('#clicker').attr("disabled", true).show();
+  $('#quit').show();
 
   //speed selection
   var speedMap = {
@@ -10,7 +13,9 @@ var runDemo = function() {
     "medium": tapTrack.MediumTap,
     "fast": tapTrack.FastTap,
   },
-  speedTapObj = speedMap[$(this).attr('data-speed')];
+  speed = $(this).attr('data-speed'),
+  speedTapObj = speedMap[speed];
+
   speedTapObj.init();
 
   // 1) countdown timer to audio serve and button activation
@@ -45,10 +50,17 @@ var runDemo = function() {
   $('#trackPlayer').on('ended', function() {
     playing = false;
     var score = $('#rpScore').text();
-    var speed = $('input[name="speed"]:checked').val();
     updateUserScore(speed, score);
     demoOver(speedTapObj.numResponses());
   });
+
+  // listen for 'quit'
+  $('#quit').click(function(event) {
+    event.preventDefault();
+    demoOver(speedTapObj.numResponses());
+    $('#trackPlayer').attr("src", "");
+  });
+
 };
 
 var buildScoreBoard = function() {
@@ -111,6 +123,7 @@ var patchUserScore = function(dataObj) {
 var demoOver = function(numTaps) {
   removeRpPoint(numTaps);
   $('#clicker').hide();
+  $('#quit').hide();
   $('#clicker').unbind('click');
   $('#finish-review').attr('disabled', 'disabled').show();
   setTimeout(function() {

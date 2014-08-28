@@ -6,7 +6,7 @@ body {
   color: white !important;
 }
 
-#userResponse {
+#userResponse, #runtimeResponse {
   width: 80%;
   margin-left: 10%;
   height: 100px;
