@@ -16,14 +16,23 @@
 .fast-scores {
   background-color: #29BEB9;
 }
-#userResponse {
-  width: 50%;
-  height: 60px;
-  margin-left: 25%;
+
+#finish-review, #clicker {
+  width: 100%;
+  height: 100%;
 }
 
+#userResponse {
+  width: 50%;
+  height: 100px;
+  margin-left: 25%;
+}
+#start-button-group {
+  height: 100%;
+}
 .start-button {
   width: 16.6%;
+  height: 100%;
 }
 
 #charts {
