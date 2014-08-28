@@ -121,7 +121,8 @@ var rollBackIti = function() {
 
   $('#finish-review').attr("disabled","disabled");
   $('#finish-review').hide();
-  $('#start-button').attr("disabled", "disabled").show();
+  $('.start-button').attr("disabled", "disabled");
+  $('#start-button-group').show();
 
   setTimeout(function() {
     d3.selectAll('#scroll-iti circle').remove();
@@ -140,7 +141,7 @@ var rollBackIti = function() {
     d3.select('#rpScore')
     .text('Score');
 
-    $('#start-button').attr("disabled", false);
+    $('.start-button').attr("disabled", false);
   }, 2000);
 };
 
