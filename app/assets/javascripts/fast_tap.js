@@ -53,7 +53,7 @@ var tapTrack = tapTrack || {};
     var scoreC = calcScore(_anglesC, 90);
     var scoreD = calcScore(_anglesD, 180);
     if (_anglesA.length === _anglesB.length) {
-      d3.select('#rpScore')
+      $('#scoreReport')
       .text(((scoreA + scoreB + scoreC + scoreD)/4).toFixed(2));
     }
   },

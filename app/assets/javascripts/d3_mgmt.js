@@ -86,12 +86,6 @@ var initializeFigures = function() {
   .attr('r', 5)
   .attr('fill', 'yellow');
 
-  var score = rpContainer.append('g')
-  .attr('transform', 'translate(125, 50)')
-  .append('text')
-  .attr('id', 'rpScore')
-  .text('Score');
-
   var onBeat = rpContainer.append('g')
   .attr('transform', 'translate(230, 155)')
   .append('text')
@@ -123,7 +117,7 @@ var rollBackIti = function() {
   $('#finish-review').hide();
   $('.start-button').attr("disabled", "disabled");
   $('#start-button-group').show();
-
+  $('#scoreCard').hide();
   setTimeout(function() {
     d3.selectAll('#scroll-iti circle').remove();
     d3.selectAll('#scroll-iti .dataLine').remove();
@@ -137,9 +131,6 @@ var rollBackIti = function() {
     .transition()
     .remove()
     .duration(200);
-
-    d3.select('#rpScore')
-    .text('Score');
 
     $('.start-button').attr("disabled", false);
   }, 2000);
@@ -196,6 +187,7 @@ var updateMeanIti = function(tapSpeedObj) {
   .attr('transform', 'translate(0,'+scaledMean+')')
   .duration(200);
 };
+
 var plotRpPoint = function(refs, aTap) {
   var svgCircle = d3.select('#rpCircle');
   var r = parseInt(svgCircle.attr('r'));

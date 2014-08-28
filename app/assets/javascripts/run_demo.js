@@ -42,14 +42,14 @@ var runDemo = function() {
     //perform d3 to plot new RP line, update 'score'
     var angle = plotRpPoint(tapTrack.expectedResponses, thisTap);
     speedTapObj.addAngle(angle);
-    speedTapObj.updateScore();
-
   });
 
   //end of audio stimulus, end user input
   $('#trackPlayer').on('ended', function() {
     playing = false;
-    var score = $('#rpScore').text();
+    speedTapObj.updateScore();
+    $('#scoreCard').show();
+    var score = $('#scoreReport').text();
     updateUserScore(speed, score);
     demoOver(speedTapObj.numResponses());
   });

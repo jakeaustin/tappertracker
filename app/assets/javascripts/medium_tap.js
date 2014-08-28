@@ -40,7 +40,7 @@ var tapTrack = tapTrack || {};
         var scoreA = calcScore(_anglesA, 0);
         var scoreB = calcScore(_anglesB, 180);
         if (_anglesA.length === _anglesB.length) {
-          d3.select('#rpScore')
+          $('#scoreReport')
             .text(((scoreA + scoreB)/2).toFixed(2));
         }
       },

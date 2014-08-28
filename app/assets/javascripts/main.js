@@ -4,6 +4,8 @@ $(document).ready(function() {
 
   $('#runtimeResponse').hide();
   $('#countdown').hide();
+  $('#scoreCard').hide();
+  $('#scoreReport').empty();
   $('.aboutPage').hide();
 
   $('.about-button').click(function() {

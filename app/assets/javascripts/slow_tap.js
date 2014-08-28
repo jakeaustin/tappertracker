@@ -38,7 +38,7 @@ var tapTrack = tapTrack || {};
       },
       updateScore = function(){
         var score = calcScore(_angles, 0);
-        d3.select('#rpScore').text(score.toFixed(2));
+        $('#scoreReport').text(score.toFixed(2));
       },
       calcMeanIti = function(){
         var sum = 0;
