@@ -1,3 +1,12 @@
+.slow-scores {
+  background-color: #2ecc71;
+}
+.medium-scores {
+  background-color: #16BA85;
+}
+.fast-scores {
+  background-color: #29BEB9;
+}
 #userResponse {
   width: 50%;
   height: 60px;
