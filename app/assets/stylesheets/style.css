@@ -51,7 +51,7 @@ body {
 }
 
 .scoreNum {
-  color: #f1c40f;
+  color: #9b59b6;
   font-size: 20px;
 }
 
@@ -137,4 +137,24 @@ body {
 .about-button {
   float: left;
   margin-top: 10px;
+}
+
+.devise-page {
+  font-size: 2em;
+}
+
+.devise-page h2 {
+  font-size: 3em;
+  color: #bbb;
+  font-style: underline;
+  font-weight: bold;
+}
+
+.devise-page h3 {
+  color: #ccc;
+  font-size: 1.5em;
+}
+
+.devise-page i {
+  font-size: 15px;
 }
