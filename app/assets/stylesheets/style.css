@@ -43,8 +43,16 @@ body {
   text-align: center;
 }
 
+.user-scores {
+  font-size: 12px;
+  color: #ddd;
+  font-weight: bold;
+  font-style: italic;
+}
+
 .scoreNum {
-  font-size: 2em;
+  color: #f1c40f;
+  font-size: 20px;
 }
 
 .score-box {
@@ -71,16 +79,6 @@ body {
 
 #charts {
   text-align: center;
-}
-
-#ITI-chart {
- /* border: 2px solid blue;
-  border-radius: 15%;*/
-}
-
-#RP-chart {
- /* border: 2px solid red;
-  border-radius: 15%;*/
 }
 
 body {
