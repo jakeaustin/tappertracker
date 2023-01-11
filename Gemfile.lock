@@ -221,6 +221,7 @@ DEPENDENCIES
   handlebars_assets
   jbuilder (~> 2.11.5)
   jquery-rails
+  nokogiri (~> 1.13.10)
   pg
   rails (= 7.0.4)
   rails_12factor

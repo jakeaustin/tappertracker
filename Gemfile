@@ -31,8 +31,13 @@ gem 'sdoc', '~> 2.6.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# specify nokogiri version for ruby compatability
+gem 'nokogiri', '~> 1.13.10'
+
 # webrick required in gemfile as of ruby 3.0
 gem 'webrick'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
