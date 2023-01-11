@@ -1,0 +1,160 @@
+body {
+  background-color: #ecf0f1;
+  font-family: 'Droid Serif', serif;
+}
+
+.titleFont {
+  font-family: 'Oswald', sans-serif;
+}
+
+.navbar-nav li a {
+  color: white !important;
+}
+
+#userResponse, #runtimeResponse {
+  width: 80%;
+  margin-left: 10%;
+  height: 100px;
+}
+
+#start-button-group {
+  height: 100%;
+}
+
+.start-button {
+  width: 30%;
+  height: 100%;
+}
+
+.onex {
+  background-color: #2ecc71;
+}
+
+.twox {
+  background-color: #16BA85;
+}
+
+.fourx {
+  background-color: #29BEB9;
+}
+
+.leaderboard {
+  margin: 0 20px;
+  text-align: center;
+}
+
+.user-scores {
+  font-size: 12px;
+  color: #ddd;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.scoreNum {
+  color: #9b59b6;
+  font-size: 20px;
+}
+
+.score-box {
+  border-radius: 15%;
+  border: 3px solid #ecf0f1;
+}
+
+.slow-scores {
+  background-color: #2ecc71;
+}
+
+.medium-scores {
+  background-color: #16BA85;
+}
+
+.fast-scores {
+  background-color: #29BEB9;
+}
+
+#finish-review, #clicker {
+  width: 100%;
+  height: 100%;
+}
+
+#charts {
+  text-align: center;
+}
+
+body {
+  text-align: center;
+}
+
+#scoreCard {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  z-index: 2;
+  width: 50%;
+  height: 200px;
+  text-align: center;
+  font-size: 60px;
+  border: 2px solid black;
+  background-color: #ccc;
+  border-radius: 15%;
+  color: white;
+}
+
+#countdown {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  z-index: 2;
+  border: 2px solid orange;
+  color: orange;
+  background-color: black;
+  width: 10%;
+  height: 100px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 80px;
+}
+
+.aboutPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+  background-color: rgba(100, 50, 100, 0.7);
+}
+
+.aboutWrapper {
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 100px;
+  overflow-y: scroll;
+}
+
+.about-button {
+  float: left;
+  margin-top: 10px;
+}
+
+.devise-page {
+  font-size: 2em;
+}
+
+.devise-page h2 {
+  font-size: 3em;
+  color: #bbb;
+  font-style: underline;
+  font-weight: bold;
+}
+
+.devise-page h3 {
+  color: #ccc;
+  font-size: 1.5em;
+}
+
+.devise-page i {
+  font-size: 15px;
+}
