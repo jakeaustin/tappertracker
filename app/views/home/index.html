@@ -1,17 +1,27 @@
 <header>
-  <h1 class="titleFont">Choose Tapping Rate</h1>
+  <h1 class="titleFont">How to play:</h1>
 </header>
 
+<div class="row">
+  <div class="col-sm-4 col-xs-3"></div>
+  <div class="col-sm-4 col-xs-6">
+  <ol align="left">
+    <li>Press "Start" to begin the countdown.</li> 
+    <li>Start tapping along with the beeps.</li>
+    <li>That's it! Feel the rhythm, stay on that beat!</li>
+  </ol>
+  </div>
+  <div class="col-sm-4 col-xs-3"></div>
+</div>
 <div id="userResponse" class="container-fluid">
   <div id="start-button-group" class="row">
-    <div class="start-button onex btn btn-lg" data-speed="slow"><h2>1x</h2></div>
-    <div class="start-button twox btn btn-lg" data-speed="medium"><h2>2x</h2></div>
-    <div class="start-button fourx btn btn-lg" data-speed="fast"><h2>4x</h2></div>
-  </div>
+    <div class="start-button onex btn btn-lg" data-speed="slow"><h2>Start</h2></div>
+    </div>
   <div id="runtimeResponse">
     <button id="clicker" class="btn btn-lg btn-success" disabled> 'Tap' Here </button>
     <button id="finish-review" class="btn btn-lg btn-danger">Done</button>
-    <button id="quit" class="btn btn-sm btn-danger">Quit</button>
+    <hr>
+    <button id="quit" class="btn btn-sm btn-danger">Abandon</button>
   </div>
 </div>
 
@@ -19,20 +29,21 @@
 
 <div id="charts" class="row">
   <div id="ITI-chart" class="col-sm-4 col-sm-offset-1">
+    <h2>Inter-tap Interval (ms)</h2>
     <svg id="svg-iti">
       <g id="scroll-iti"></g>
     </svg>
   </div>
+  <div id="countdown">
+  </div>
   <div id="RP-chart" class="col-sm-4 col-sm-offset-2">
+    <h2>Beat Accuracy*</h2>
     <svg id="svg-rp">
     </svg>
+    <p>*Your accuracy chart may reflect audo lag.</p>
   </div>
 </div>
-
 <hr>
-
-<div id="countdown">
-</div>
 
 <div id="scoreCard">
   Score:
@@ -40,42 +51,40 @@
   </div>
 </div>
 
+<!-- 
 <div class="highScores">
-</div>
+</div> -->
 
 <div class="aboutPage">
   <div class="aboutWrapper">
-    <h3> So what is Tapper Tracker? </h3>
+    <h3>About Tapper Tracker</h3>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
     <p>
-      Tapper Tracker is a visualization tool for tapping to a steady beat. When you choose a tap rate a metronome will begin playing - your goal is to tap along! With every tap, you can see how well you are maintaining the beat.
+      Tapper Tracker is inspired by my undergrad senior research study, which took a closer look at how humans (musically inclined and otherwise) perceive, extract, and reproduce a beat. If you're interested, check out <a href="https://www.youtube.com/watch?v=n7IX_NjpcfM&ab_channel=MusicandtheBrainSantaFe">this talk with Dr. Aniruddh Patel</a> (who lead the project). 
     </p>
     <p>
-      If you choose ‘1x’, tap once for each metronome beep.
-      <br>
-      If you choose ‘2x’, tap at twice the rate of the beep (on the On Beat and Off Beat) <br>
-      If you choose ‘4x’, tap at four times the rate of the beep
-      <br><br>
-      You can use the green lines on the graphs as your guide for tapping
+    I think our faculties around rhythm and music are fascinating, and since so much of what makes us human is routed in our ability to sense and extract patterns it should be no surprise that music is deeply ingrained in our cognitive history. 
+    </p>
+    <p>
+      This website is a visualization tool replicating some of what we measured in our study. In practice we used a midi drum pad for high-precision and worked in a controlled environment, but this is a great way to demonstrate the concepts. Originally presented as a game where the best beat-keepers climbed the leaderboards, I'm redesigning to focus on the underlying methodology.
     </p>
     <br>
-    <h4> The Graphs </h4>
     <p>
-      You have two different representations of your beats - a line graph and a circular graph.
-    </p>
-    <p>
-      The line graph is the time between your taps (the green line is your average). The metronome is 800ms, which is why it is the middle value. For '1x' your target is 800. For '2x' it is 400, and for '4x' it is 200.
-    </p>
-    <p>
-      The circle graph will plot one yellow line for each tap you make. The line will show where your tap falls relative to the beat. Try tapping different speeds to see how the graph reacts.
-    </p>
-    <p>
-      Choose what beat you are going to tap, and Tapper Tracker will track your progress and give you a score. If you make an account, you can be entered into the leaderboards!
+      Plans to improve further:
+    <ol  align="left">
+      <li>Log tapping stats for aggregate analysis</li>
+      <li>Bring back user accounts + introduce a user survey for segmentation (e.g. hearing complications or musical training)</li>
+      <li>Visualize more stats (e.g. fix real-time mean for beat accuracy, highlight taps beyond standard deviations)</li>
+    </ol>
     </p>
     <h2> Created by Jake Austin </h2>
     <p>
-      www.github.com/jakeaustin
+      <a href="www.github.com/jakeaustin/tappertracker">See Tapper Tracker on Github</a>
     </p>
+  </ol>
   </div>
+  <div class="col-sm-3"></div>
 </div>
 
 <audio id="trackPlayer" autoplay></audio>

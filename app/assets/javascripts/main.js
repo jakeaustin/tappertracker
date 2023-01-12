@@ -8,7 +8,7 @@ $(document).ready(function() {
   $('#scoreReport').empty();
   $('.aboutPage').hide();
 
-  $('.about-button').click(function() {
+  $('.about-button, .aboutPage').click(function() {
     $('.aboutPage').toggle();
   });
 
