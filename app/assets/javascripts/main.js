@@ -12,7 +12,7 @@ $(document).ready(function() {
     $('.aboutPage').toggle();
   });
 
-  buildScoreBoard();
+  // buildScoreBoard();
 
 /////////////////////////////////////////////////////////////////////
   // have some animation play on home screen --------- no timeout, repeat...
