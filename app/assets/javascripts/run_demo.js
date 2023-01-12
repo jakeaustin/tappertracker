@@ -63,17 +63,17 @@ var runDemo = function() {
 
 };
 
-var buildScoreBoard = function() {
-  $.ajax({
-    type: 'get',
-    datatype: 'json',
-    url: '/leaders',
-  }).done(function(data) {
-    $('.highScores').append(HandlebarsTemplates.build_leaderboard(data));
-  }).fail(function() {
-    alert('Something went wroooooong');
-  });
-};
+// var buildScoreBoard = function() {
+//   $.ajax({
+//     type: 'get',
+//     datatype: 'json',
+//     url: '/leaders',
+//   }).done(function(data) {
+//     $('.highScores').append(HandlebarsTemplates.build_leaderboard(data));
+//   }).fail(function() {
+//     alert('Something went wroooooong');
+//   });
+// };
 
 var updateUserScore = function(speed, score) {
   var dataObj = {user: {}};
@@ -105,20 +105,20 @@ var updateUserScore = function(speed, score) {
   });
 };
 
-var patchUserScore = function(dataObj) {
-  $.ajax({
-    type: 'put',
-    datatype: 'json',
-    data: dataObj,
-    url: '/user'
-  }).done(function() {
-    alert('New High Score!');
-    $('.highScores').empty();
-    buildScoreBoard();
-  }).fail(function() {
-    alert('Error saving new high score');
-  });
-};
+// var patchUserScore = function(dataObj) {
+//   $.ajax({
+//     type: 'put',
+//     datatype: 'json',
+//     data: dataObj,
+//     url: '/user'
+//   }).done(function() {
+//     alert('New High Score!');
+//     $('.highScores').empty();
+//     buildScoreBoard();
+//   }).fail(function() {
+//     alert('Error saving new high score');
+//   });
+// };
 
 var demoOver = function(numTaps) {
   removeRpPoint(numTaps);
