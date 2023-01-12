@@ -13518,15 +13518,15 @@ var initializeFigures = function() {
   .attr('r', 5)
   .attr('fill', 'yellow');
 
-  var onBeat = rpContainer.append('g')
+  var OffBeat = rpContainer.append('g')
   .attr('transform', 'translate(230, 155)')
   .append('text')
-  .text('On Beat');
+  .text('Off Beat');
 
-  var offBeat = rpContainer.append('g')
+  var OnBeat = rpContainer.append('g')
   .attr('transform', 'translate(10, 155)')
   .append('text')
-  .text('Off Beat');
+  .text('On Beat');
 
 };
 
@@ -13820,7 +13820,7 @@ $(document).ready(function() {
   $('#scoreReport').empty();
   $('.aboutPage').hide();
 
-  $('.about-button').click(function() {
+  $('.about-button, .aboutPage').click(function() {
     $('.aboutPage').toggle();
   });
 
