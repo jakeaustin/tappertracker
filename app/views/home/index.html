@@ -1,13 +1,16 @@
 <header>
-  <h1 class="titleFont">Choose Tapping Rate</h1>
+  <h1 class="titleFont">How to play:</h1>
+  <p>
+    Press ___ to begin the countdown and start tapping along with the beeps as best you can.
+
+    You will see each tap logged in the below charts in real-time. For a real challenge, try with your eyes closed!
+  </p>
 </header>
 
 <div id="userResponse" class="container-fluid">
   <div id="start-button-group" class="row">
-    <div class="start-button onex btn btn-lg" data-speed="slow"><h2>1x</h2></div>
-    <div class="start-button twox btn btn-lg" data-speed="medium"><h2>2x</h2></div>
-    <div class="start-button fourx btn btn-lg" data-speed="fast"><h2>4x</h2></div>
-  </div>
+    <div class="start-button onex btn btn-lg" data-speed="slow"><h2>Start</h2></div>
+    </div>
   <div id="runtimeResponse">
     <button id="clicker" class="btn btn-lg btn-success" disabled> 'Tap' Here </button>
     <button id="finish-review" class="btn btn-lg btn-danger">Done</button>
@@ -40,8 +43,9 @@
   </div>
 </div>
 
+<!-- 
 <div class="highScores">
-</div>
+</div> -->
 
 <div class="aboutPage">
   <div class="aboutWrapper">
@@ -50,12 +54,7 @@
       Tapper Tracker is a visualization tool for tapping to a steady beat. When you choose a tap rate a metronome will begin playing - your goal is to tap along! With every tap, you can see how well you are maintaining the beat.
     </p>
     <p>
-      If you choose ‘1x’, tap once for each metronome beep.
-      <br>
-      If you choose ‘2x’, tap at twice the rate of the beep (on the On Beat and Off Beat) <br>
-      If you choose ‘4x’, tap at four times the rate of the beep
-      <br><br>
-      You can use the green lines on the graphs as your guide for tapping
+      ...
     </p>
     <br>
     <h4> The Graphs </h4>
@@ -69,7 +68,10 @@
       The circle graph will plot one yellow line for each tap you make. The line will show where your tap falls relative to the beat. Try tapping different speeds to see how the graph reacts.
     </p>
     <p>
-      Choose what beat you are going to tap, and Tapper Tracker will track your progress and give you a score. If you make an account, you can be entered into the leaderboards!
+      Plans to improve further:
+      1. Log tapping stats for aggregate analysis
+      2. Restore user accounts + introduce a user survey for segmentation (e.g. hearing complications or musical training)
+      3. Visualize more stats (e.g. taps beyond standard deviations)
     </p>
     <h2> Created by Jake Austin </h2>
     <p>
